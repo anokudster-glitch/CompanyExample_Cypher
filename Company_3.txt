@@ -1,0 +1,1422 @@
+// ============================================
+// BEISPIEL 3: Healthcare SaaS - "MediCare Solutions GmbH"
+// ============================================
+
+// --- Create Company ---
+CREATE (c3:Company {
+  id: 'comp_003',
+  name: 'MediCare Solutions GmbH',
+  industry: 'Healthcare Technology',
+  sector: 'SaaS',
+  founded_year: 2017,
+  legal_form: 'GmbH',
+  employee_count: 165,
+  headquarters: 'Berlin, Germany',
+  mission: 'Empowering healthcare providers with intelligent practice management solutions',
+  vision: 'To digitalize 50% of German medical practices by 2029',
+  created_at: datetime(),
+  updated_at: datetime()
+});
+
+// --- Create Goals ---
+CREATE (g3_1:Goal {
+  id: 'goal_3_001',
+  name: 'Achieve Series B Funding',
+  description: 'Secure €15M Series B to accelerate market expansion',
+  timeframe: 'short-term',
+  priority: 'high',
+  status: 'in_progress',
+  target_date: date('2025-09-30'),
+  progress_percentage: 42.0
+});
+
+CREATE (g3_2:Goal {
+  id: 'goal_3_002',
+  name: 'Reduce Customer Churn',
+  description: 'Decrease annual churn rate from 12% to 8%',
+  timeframe: 'short-term',
+  priority: 'high',
+  status: 'in_progress',
+  target_date: date('2025-12-31'),
+  progress_percentage: 28.0
+});
+
+CREATE (g3_3:Goal {
+  id: 'goal_3_003',
+  name: 'Expand to Austrian Market',
+  description: 'Launch product in Austria with 100 customers by end of year',
+  timeframe: 'mid-term',
+  priority: 'medium',
+  status: 'planned',
+  target_date: date('2026-12-31'),
+  progress_percentage: 8.0
+});
+
+// --- Create Products ---
+CREATE (p3_1:Product {
+  id: 'prod_3_001',
+  name: 'MediCare Practice Manager',
+  description: 'Comprehensive practice management software for medical practices',
+  product_type: 'product',
+  lifecycle_stage: 'maturity',
+  revenue_contribution: 58.2,
+  launch_date: date('2018-04-01')
+});
+
+CREATE (p3_2:Product {
+  id: 'prod_3_002',
+  name: 'MediCare Telemedicine',
+  description: 'Integrated telemedicine platform for remote consultations',
+  product_type: 'product',
+  lifecycle_stage: 'growth',
+  revenue_contribution: 28.5,
+  launch_date: date('2021-11-01')
+});
+
+CREATE (p3_3:Product {
+  id: 'prod_3_003',
+  name: 'Premium Support & Training',
+  description: 'Dedicated onboarding and ongoing support services',
+  product_type: 'service',
+  lifecycle_stage: 'maturity',
+  revenue_contribution: 13.3,
+  launch_date: date('2019-01-01')
+});
+
+// --- Create Customers ---
+CREATE (cust3_1:Customer {
+  id: 'cust_3_001',
+  name: 'Charité Medical Network',
+  segment: 'B2B',
+  type: 'key_account',
+  revenue_contribution: 15.8,
+  relationship_start: date('2019-06-01'),
+  geography: 'Germany',
+  lifetime_value: 2800000.0,
+  nps_score: 58,
+  strategic_importance: 'tier_a'
+});
+
+CREATE (cust3_2:Customer {
+  id: 'cust_3_002',
+  name: 'Hausarzt Netzwerk Bayern',
+  segment: 'B2B',
+  type: 'strategic_partner',
+  revenue_contribution: 12.3,
+  relationship_start: date('2020-02-15'),
+  geography: 'Germany',
+  lifetime_value: 1950000.0,
+  nps_score: 62,
+  strategic_importance: 'tier_a'
+});
+
+CREATE (cust3_3:Customer {
+  id: 'cust_3_003',
+  name: 'Berlin Pediatric Collective',
+  segment: 'B2B',
+  type: 'regular',
+  revenue_contribution: 6.8,
+  relationship_start: date('2022-09-20'),
+  geography: 'Germany',
+  lifetime_value: 580000.0,
+  nps_score: 55,
+  strategic_importance: 'tier_b'
+});
+
+// --- Create Processes ---
+CREATE (proc3_1:Process {
+  id: 'proc_3_001',
+  name: 'Customer Onboarding',
+  category: 'core',
+  description: 'End-to-end customer onboarding from contract to go-live',
+  process_type: 'customer_onboarding',
+  digitalization_level: 62.0,
+  automation_level: 48.0,
+  documented: true,
+  cycle_time: 45,
+  error_rate: 12.5,
+  maturity_level: 2
+});
+
+CREATE (proc3_2:Process {
+  id: 'proc_3_002',
+  name: 'Customer Support Ticketing',
+  category: 'support',
+  description: 'Customer support request handling and resolution',
+  process_type: 'customer_support',
+  digitalization_level: 82.0,
+  automation_level: 45.0,
+  documented: true,
+  cycle_time: 18,
+  error_rate: 8.2,
+  maturity_level: 3
+});
+
+CREATE (proc3_3:Process {
+  id: 'proc_3_003',
+  name: 'Product Development Sprint',
+  category: 'core',
+  description: 'Agile product development process (2-week sprints)',
+  process_type: 'development',
+  digitalization_level: 90.0,
+  automation_level: 65.0,
+  documented: true,
+  cycle_time: 14,
+  error_rate: 5.5,
+  maturity_level: 4
+});
+
+CREATE (proc3_4:Process {
+  id: 'proc_3_004',
+  name: 'Sales Pipeline Management',
+  category: 'core',
+  description: 'Lead qualification to contract closure process',
+  process_type: 'sales',
+  digitalization_level: 75.0,
+  automation_level: 52.0,
+  documented: true,
+  cycle_time: 65,
+  error_rate: 15.8,
+  maturity_level: 3
+});
+
+// --- Create KPIs ---
+CREATE (kpi3_1:KPI {
+  id: 'kpi_3_001',
+  name: 'Annual Recurring Revenue',
+  category: 'financial',
+  description: 'Total ARR from all subscription customers',
+  unit: 'EUR',
+  current_value: 8200000.0,
+  target_value: 12000000.0,
+  trend: 'improving',
+  measurement_frequency: 'monthly',
+  last_measured: date('2025-01-31'),
+  threshold_red: 6000000.0,
+  threshold_yellow: 9000000.0,
+  threshold_green: 12000000.0,
+  owner: 'CEO'
+});
+
+CREATE (kpi3_2:KPI {
+  id: 'kpi_3_002',
+  name: 'Net Revenue Retention',
+  category: 'financial',
+  description: 'Revenue retention including expansion and churn',
+  unit: '%',
+  current_value: 92.0,
+  target_value: 110.0,
+  trend: 'stable',
+  measurement_frequency: 'quarterly',
+  last_measured: date('2024-12-31'),
+  threshold_red: 85.0,
+  threshold_yellow: 95.0,
+  threshold_green: 110.0,
+  owner: 'CFO'
+});
+
+CREATE (kpi3_3:KPI {
+  id: 'kpi_3_003',
+  name: 'Customer Churn Rate',
+  category: 'customer',
+  description: 'Annual customer churn rate',
+  unit: '%',
+  current_value: 12.0,
+  target_value: 8.0,
+  trend: 'declining',
+  measurement_frequency: 'monthly',
+  last_measured: date('2025-01-31'),
+  threshold_red: 15.0,
+  threshold_yellow: 12.0,
+  threshold_green: 8.0,
+  owner: 'CCO'
+});
+
+CREATE (kpi3_4:KPI {
+  id: 'kpi_3_004',
+  name: 'Time to Onboard',
+  category: 'operational',
+  description: 'Average time from contract to customer go-live',
+  unit: 'days',
+  current_value: 45.0,
+  target_value: 30.0,
+  trend: 'stable',
+  measurement_frequency: 'monthly',
+  last_measured: date('2025-01-31'),
+  threshold_red: 60.0,
+  threshold_yellow: 45.0,
+  threshold_green: 30.0,
+  owner: 'COO'
+});
+
+CREATE (kpi3_5:KPI {
+  id: 'kpi_3_005',
+  name: 'Support Ticket Resolution Time',
+  category: 'operational',
+  description: 'Average time to resolve customer support tickets',
+  unit: 'hours',
+  current_value: 18.0,
+  target_value: 12.0,
+  trend: 'improving',
+  measurement_frequency: 'weekly',
+  last_measured: date('2025-02-10'),
+  threshold_red: 24.0,
+  threshold_yellow: 18.0,
+  threshold_green: 12.0,
+  owner: 'Head of Support'
+});
+
+// --- Create Organizational Units ---
+CREATE (ou3_1:OrganizationalUnit {
+  id: 'ou_3_001',
+  name: 'Product & Engineering',
+  type: 'department',
+  employee_count: 68,
+  budget: 4200000.0,
+  cost_center: 'CC-3100'
+});
+
+CREATE (ou3_2:OrganizationalUnit {
+  id: 'ou_3_002',
+  name: 'Customer Success',
+  type: 'department',
+  employee_count: 42,
+  budget: 2100000.0,
+  cost_center: 'CC-3200'
+});
+
+CREATE (ou3_3:OrganizationalUnit {
+  id: 'ou_3_003',
+  name: 'Sales & Marketing',
+  type: 'department',
+  employee_count: 35,
+  budget: 2800000.0,
+  cost_center: 'CC-3300'
+});
+
+CREATE (ou3_4:OrganizationalUnit {
+  id: 'ou_3_004',
+  name: 'Operations & Finance',
+  type: 'department',
+  employee_count: 20,
+  budget: 1200000.0,
+  cost_center: 'CC-3400'
+});
+
+CREATE (ou3_5:OrganizationalUnit {
+  id: 'ou_3_005',
+  name: 'Implementation Team',
+  type: 'team',
+  employee_count: 22,
+  budget: 1100000.0,
+  cost_center: 'CC-3210'
+});
+
+// --- Create Persons ---
+CREATE (pers3_1:Person {
+  id: 'pers_3_001',
+  name: 'Dr. Michael Hoffmann',
+  title: 'CEO & Co-Founder',
+  tenure_years: 7.5,
+  background: 'Medical doctor turned entrepreneur, former hospital administrator',
+  is_key_decision_maker: true
+});
+
+CREATE (pers3_2:Person {
+  id: 'pers_3_002',
+  name: 'Julia Schwarz',
+  title: 'CPO & Co-Founder',
+  tenure_years: 7.5,
+  background: 'UX/Product background from healthcare startups',
+  is_key_decision_maker: true
+});
+
+CREATE (pers3_3:Person {
+  id: 'pers_3_003',
+  name: 'Robert Zimmermann',
+  title: 'CTO',
+  tenure_years: 4.8,
+  background: 'Former tech lead at Siemens Healthineers',
+  is_key_decision_maker: true
+});
+
+CREATE (pers3_4:Person {
+  id: 'pers_3_004',
+  name: 'Sandra Krause',
+  title: 'Head of Customer Success',
+  tenure_years: 3.2,
+  background: 'Customer success veteran from SaaS industry',
+  is_key_decision_maker: false
+});
+
+// --- Create Roles ---
+CREATE (role3_1:Role {
+  id: 'role_3_001',
+  title: 'Implementation Consultant',
+  level: 'middle',
+  department: 'Customer Success',
+  responsibilities: 'Lead customer onboarding and system implementation',
+  headcount: 15
+});
+
+CREATE (role3_2:Role {
+  id: 'role_3_002',
+  title: 'Product Engineer',
+  level: 'junior',
+  department: 'Product & Engineering',
+  responsibilities: 'Develop and maintain product features',
+  headcount: 32
+});
+
+CREATE (role3_3:Role {
+  id: 'role_3_003',
+  title: 'Account Executive',
+  level: 'middle',
+  department: 'Sales & Marketing',
+  responsibilities: 'Acquire and close new enterprise customers',
+  headcount: 12
+});
+
+// --- Create Capabilities ---
+CREATE (cap3_1:Capability {
+  id: 'cap_3_001',
+  name: 'Healthcare Domain Knowledge',
+  type: 'organizational',
+  maturity_level: 5,
+  description: 'Deep understanding of medical practice operations and regulations',
+  is_competitive_advantage: true,
+  current_maturity: 5,
+  target_maturity: 5,
+  gap_size: 0,
+  development_priority: 'low'
+});
+
+CREATE (cap3_2:Capability {
+  id: 'cap_3_002',
+  name: 'Customer Onboarding Excellence',
+  type: 'operational',
+  maturity_level: 2,
+  description: 'Structured and efficient customer implementation process',
+  is_competitive_advantage: false,
+  current_maturity: 2,
+  target_maturity: 4,
+  gap_size: 2,
+  development_priority: 'high'
+});
+
+CREATE (cap3_3:Capability {
+  id: 'cap_3_003',
+  name: 'Product Innovation',
+  type: 'technical',
+  maturity_level: 3,
+  description: 'Ability to rapidly develop and launch new features',
+  is_competitive_advantage: true,
+  current_maturity: 3,
+  target_maturity: 4,
+  gap_size: 1,
+  development_priority: 'medium'
+});
+
+CREATE (cap3_4:Capability {
+  id: 'cap_3_004',
+  name: 'Customer Retention Management',
+  type: 'commercial',
+  maturity_level: 2,
+  description: 'Proactive customer success and churn prevention',
+  is_competitive_advantage: false,
+  current_maturity: 2,
+  target_maturity: 4,
+  gap_size: 2,
+  development_priority: 'high'
+});
+
+// --- Create Systems ---
+CREATE (sys3_1:System {
+  id: 'sys_3_001',
+  name: 'MediCare Platform',
+  type: 'custom',
+  vendor: 'Internal',
+  version: '4.8.2',
+  implementation_date: date('2018-04-01'),
+  integration_level: 100.0,
+  user_count: 12500
+});
+
+CREATE (sys3_2:System {
+  id: 'sys_3_002',
+  name: 'HubSpot CRM',
+  type: 'CRM',
+  vendor: 'HubSpot',
+  version: 'Enterprise',
+  implementation_date: date('2019-08-01'),
+  integration_level: 78.0,
+  user_count: 48
+});
+
+CREATE (sys3_3:System {
+  id: 'sys_3_003',
+  name: 'Zendesk Support',
+  type: 'support',
+  vendor: 'Zendesk',
+  version: 'Professional',
+  implementation_date: date('2020-02-01'),
+  integration_level: 85.0,
+  user_count: 42
+});
+
+CREATE (sys3_4:System {
+  id: 'sys_3_004',
+  name: 'ChartMogul',
+  type: 'analytics',
+  vendor: 'ChartMogul',
+  version: 'Scale',
+  implementation_date: date('2021-05-01'),
+  integration_level: 70.0,
+  user_count: 18
+});
+
+CREATE (sys3_5:System {
+  id: 'sys_3_005',
+  name: 'Personio',
+  type: 'HRM',
+  vendor: 'Personio',
+  version: 'Professional',
+  implementation_date: date('2022-03-01'),
+  integration_level: 55.0,
+  user_count: 165
+});
+
+// --- Create Culture Attributes ---
+CREATE (cult3_1:CultureAttribute {
+  id: 'cult_3_001',
+  dimension: 'mission_driven',
+  description: 'Strong sense of purpose in improving healthcare delivery',
+  score: 85.0,
+  is_strength: true
+});
+
+CREATE (cult3_2:CultureAttribute {
+  id: 'cult_3_002',
+  dimension: 'customer_centricity',
+  description: 'Limited voice of customer in product decisions',
+  score: 48.0,
+  is_strength: false
+});
+
+CREATE (cult3_3:CultureAttribute {
+  id: 'cult_3_003',
+  dimension: 'accountability',
+  description: 'Clear ownership and responsibility culture',
+  score: 72.0,
+  is_strength: true
+});
+
+CREATE (cult3_4:CultureAttribute {
+  id: 'cult_3_004',
+  dimension: 'cross_functional_collaboration',
+  description: 'Siloed departments with limited collaboration',
+  score: 42.0,
+  is_strength: false
+});
+
+// --- Create Market ---
+CREATE (mkt3:Market {
+  id: 'mkt_3_001',
+  name: 'DACH Medical Practice Management Software',
+  geography: 'Germany, Austria, Switzerland',
+  size_eur: 1200000000.0,
+  growth_rate: 12.8,
+  maturity: 'growing'
+});
+
+// --- Create Competitors ---
+CREATE (comp3_1:Competitor {
+  id: 'comp_3_001',
+  name: 'CompuGroup Medical',
+  market_share: 28.5,
+  competitive_position: 'leader',
+  main_differentiators: 'Market leader, extensive feature set, strong brand'
+});
+
+CREATE (comp3_2:Competitor {
+  id: 'comp_3_002',
+  name: 'Doctolib',
+  market_share: 15.2,
+  competitive_position: 'challenger',
+  main_differentiators: 'Strong in online booking and telemedicine'
+});
+
+CREATE (comp3_3:Competitor {
+  id: 'comp_3_003',
+  name: 'TomDoc',
+  market_share: 8.3,
+  competitive_position: 'niche',
+  main_differentiators: 'Modern UX, cloud-native, fast innovation'
+});
+
+// --- Create Financial Metrics ---
+CREATE (fm3_1:FinancialMetric {
+  id: 'fm_3_001',
+  metric_name: 'Annual Recurring Revenue',
+  value: 8200000.0,
+  currency: 'EUR',
+  fiscal_year: 2024,
+  quarter: 4,
+  comparison_to_previous: 32.5,
+  industry_benchmark: 28.0
+});
+
+CREATE (fm3_2:FinancialMetric {
+  id: 'fm_3_002',
+  metric_name: 'Gross Margin',
+  value: 72.0,
+  currency: 'EUR',
+  fiscal_year: 2024,
+  quarter: 4,
+  comparison_to_previous: 3.8,
+  industry_benchmark: 75.0
+});
+
+CREATE (fm3_3:FinancialMetric {
+  id: 'fm_3_003',
+  metric_name: 'Customer Lifetime Value',
+  value: 85000.0,
+  currency: 'EUR',
+  fiscal_year: 2024,
+  quarter: 4,
+  comparison_to_previous: -8.5,
+  industry_benchmark: 5.2
+});
+
+CREATE (fm3_4:FinancialMetric {
+  id: 'fm_3_004',
+  metric_name: 'Customer Acquisition Cost',
+  value: 12500.0,
+  currency: 'EUR',
+  fiscal_year: 2024,
+  quarter: 4,
+  comparison_to_previous: 15.2,
+  industry_benchmark: 8.0
+});
+
+// --- Create Assessments ---
+CREATE (assess3_1:Assessment {
+  id: 'assess_3_001',
+  type: 'strength',
+  category: 'strategic',
+  description: 'Deep healthcare domain expertise provides unique market positioning and customer trust',
+  impact: 'high',
+  identified_date: date('2025-01-20'),
+  consultant_notes: 'Domain knowledge at maturity level 5 is rare in healthtech. CEO medical background builds credibility. Should leverage more in marketing and thought leadership.'
+});
+
+CREATE (assess3_2:Assessment {
+  id: 'assess_3_002',
+  type: 'weakness',
+  category: 'operational',
+  description: '45-day onboarding process is too long, causing customer frustration and delayed revenue recognition',
+  severity: 'high',
+  identified_date: date('2025-01-20'),
+  consultant_notes: 'Industry benchmark is 25-30 days. Complex implementation process lacks standardization. Quick wins possible through process optimization and automation.'
+});
+
+CREATE (assess3_3:Assessment {
+  id: 'assess_3_003',
+  type: 'weakness',
+  category: 'customer',
+  description: '12% annual churn rate is above acceptable threshold, indicating customer satisfaction issues',
+  severity: 'high',
+  identified_date: date('2025-01-20'),
+  consultant_notes: 'Exit interviews reveal poor onboarding experience and insufficient ongoing support. NPS scores (55-62) confirm dissatisfaction. Root cause appears to be reactive vs proactive success management.'
+});
+
+CREATE (assess3_4:Assessment {
+  id: 'assess_3_004',
+  type: 'weakness',
+  category: 'cultural',
+  description: 'Departmental silos preventing effective cross-functional collaboration and customer focus',
+  severity: 'medium',
+  identified_date: date('2025-01-20'),
+  consultant_notes: 'Customer centricity score of 48/100 and collaboration score of 42/100 indicate structural issue. Product decisions made without customer input. Sales, CS, and Product operate independently.'
+});
+
+CREATE (assess3_5:Assessment {
+  id: 'assess_3_005',
+  type: 'opportunity',
+  category: 'market',
+  description: 'Growing market (12.8% CAGR) with low penetration in mid-size practices creates expansion opportunity',
+  impact: 'high',
+  identified_date: date('2025-01-20'),
+  consultant_notes: 'Company focused on large hospital networks but mid-size segment (5-15 doctors) is underserved and growing. Could be accessed with lighter onboarding model.'
+});
+
+CREATE (assess3_6:Assessment {
+  id: 'assess_3_006',
+  type: 'threat',
+  category: 'financial',
+  description: 'LTV:CAC ratio of 6.8:1 is declining due to increasing churn and acquisition costs',
+  severity: 'high',
+  identified_date: date('2025-01-20'),
+  consultant_notes: 'Unit economics deteriorating. LTV declining due to churn, CAC increasing due to competitive pressure. Not sustainable for Series B funding. Need to demonstrate improving metrics.'
+});
+
+// --- Create Action Items ---
+CREATE (act3_1:ActionItem {
+  id: 'act_3_001',
+  title: 'Implement Standardized Onboarding Playbook',
+  description: 'Create structured onboarding methodology with templates and automation to reduce time to 30 days',
+  priority: 'quick_win',
+  effort: 'medium',
+  expected_impact: 'high',
+  timeframe: 'immediate',
+  status: 'proposed',
+  estimated_cost: 180000.0,
+  expected_roi: 4.8
+});
+
+CREATE (act3_2:ActionItem {
+  id: 'act_3_002',
+  title: 'Launch Proactive Customer Success Program',
+  description: 'Implement health scoring, QBRs, and proactive outreach to reduce churn',
+  priority: 'high',
+  effort: 'medium',
+  expected_impact: 'high',
+  timeframe: 'short_term',
+  status: 'proposed',
+  estimated_cost: 280000.0,
+  expected_roi: 5.2
+});
+
+CREATE (act3_3:ActionItem {
+  id: 'act_3_003',
+  title: 'Establish Customer Advisory Board',
+  description: 'Create formal mechanism for customer input into product roadmap',
+  priority: 'medium',
+  effort: 'low',
+  expected_impact: 'medium',
+  timeframe: 'immediate',
+  status: 'proposed',
+  estimated_cost: 45000.0,
+  expected_roi: 3.5
+});
+
+CREATE (act3_4:ActionItem {
+  id: 'act_3_004',
+  title: 'Break Down Organizational Silos',
+  description: 'Implement cross-functional teams and shared OKRs across departments',
+  priority: 'high',
+  effort: 'high',
+  expected_impact: 'high',
+  timeframe: 'mid_term',
+  status: 'proposed',
+  estimated_cost: 220000.0,
+  expected_roi: 3.8
+});
+
+CREATE (act3_5:ActionItem {
+  id: 'act_3_005',
+  title: 'Develop Mid-Market Product Edition',
+  description: 'Create streamlined product version targeting 5-15 doctor practices',
+  priority: 'medium',
+  effort: 'high',
+  expected_impact: 'high',
+  timeframe: 'mid_term',
+  status: 'proposed',
+  estimated_cost: 520000.0,
+  expected_roi: 4.2
+});
+
+CREATE (act3_6:ActionItem {
+  id: 'act_3_006',
+  title: 'Optimize Marketing & Sales Efficiency',
+  description: 'Refine ICP, improve conversion rates, reduce CAC through targeted campaigns',
+  priority: 'high',
+  effort: 'medium',
+  expected_impact: 'high',
+  timeframe: 'short_term',
+  status: 'proposed',
+  estimated_cost: 150000.0,
+  expected_roi: 5.8
+});
+
+// --- Create Risks ---
+CREATE (risk3_1:Risk {
+  id: 'risk_3_001',
+  name: 'Series B Funding Dependency',
+  category: 'financial',
+  description: 'Company needs Series B to continue growth trajectory, but current metrics may not attract investors',
+  probability: 'medium',
+  impact: 'critical',
+  mitigation_strategy: 'Improve unit economics and reduce churn to demonstrate path to profitability',
+  status: 'mitigating'
+});
+
+CREATE (risk3_2:Risk {
+  id: 'risk_3_002',
+  name: 'Customer Concentration',
+  category: 'strategic',
+  description: 'Top 3 customers represent 34.9% of revenue, creating significant concentration risk',
+  probability: 'medium',
+  impact: 'high',
+  mitigation_strategy: 'Diversify customer base through mid-market expansion',
+  status: 'monitoring'
+});
+
+CREATE (risk3_3:Risk {
+  id: 'risk_3_003',
+  name: 'Regulatory Compliance Changes',
+  category: 'compliance',
+  description: 'Healthcare data regulations (GDPR, medical device laws) are evolving and could require major product changes',
+  probability: 'high',
+  impact: 'high',
+  mitigation_strategy: 'Maintain compliance team and flexible architecture to adapt to regulatory changes',
+  status: 'monitoring'
+});
+
+CREATE (risk3_4:Risk {
+  id: 'risk_3_004',
+  name: 'Competitive Pressure from Market Leader',
+  category: 'strategic',
+  description: 'CompuGroup Medical could leverage market position to defend against challengers',
+  probability: 'high',
+  impact: 'medium',
+  mitigation_strategy: 'Focus on superior UX and innovation speed as differentiation',
+  status: 'mitigating'
+});
+
+// --- Create ValueStream ---
+CREATE (vs3:ValueStream {
+  id: 'vs_3_001',
+  name: 'Lead-to-Revenue',
+  description: 'Complete value stream from initial lead to first payment received',
+  value_added_percentage: 38.0,
+  cycle_time: 110,
+  lead_time: 145
+});
+
+// --- Create DataObjects ---
+CREATE (do3_1:DataObject {
+  id: 'do_3_001',
+  name: 'Patient Medical Records',
+  type: 'transactional_data',
+  quality_score: 95.0,
+  availability: 'high',
+  update_frequency: 'real_time'
+});
+
+CREATE (do3_2:DataObject {
+  id: 'do_3_002',
+  name: 'Practice Customer Data',
+  type: 'master_data',
+  quality_score: 82.0,
+  availability: 'high',
+  update_frequency: 'daily'
+});
+
+CREATE (do3_3:DataObject {
+  id: 'do_3_003',
+  name: 'Usage Analytics Data',
+  type: 'analytical_data',
+  quality_score: 78.0,
+  availability: 'medium',
+  update_frequency: 'daily'
+});
+
+// --- Create Interfaces ---
+CREATE (int3_1:Interface {
+  id: 'int_3_001',
+  name: 'Platform-to-CRM Sync',
+  source_system: 'MediCare Platform',
+  target_system: 'HubSpot CRM',
+  protocol: 'REST API',
+  data_volume: 25000,
+  latency: 10
+});
+
+CREATE (int3_2:Interface {
+  id: 'int_3_002',
+  name: 'Platform-to-Support Integration',
+  source_system: 'MediCare Platform',
+  target_system: 'Zendesk Support',
+  protocol: 'Webhook',
+  data_volume: 8000,
+  latency: 3
+});
+
+CREATE (int3_3:Interface {
+  id: 'int_3_003',
+  name: 'Platform-to-Analytics Pipe',
+  source_system: 'MediCare Platform',
+  target_system: 'ChartMogul',
+  protocol: 'REST API',
+  data_volume: 50000,
+  latency: 15
+});
+
+// ======================================
+// RELATIONSHIPS FOR COMPANY 3
+// ======================================
+
+// Company relationships
+MATCH (c:Company {id: 'comp_003'})
+MATCH (g:Goal {id: 'goal_3_001'})
+CREATE (c)-[:HAS_GOAL]->(g);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (g:Goal {id: 'goal_3_002'})
+CREATE (c)-[:HAS_GOAL]->(g);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (g:Goal {id: 'goal_3_003'})
+CREATE (c)-[:HAS_GOAL]->(g);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (p:Product {id: 'prod_3_001'})
+CREATE (c)-[:OFFERS]->(p);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (p:Product {id: 'prod_3_002'})
+CREATE (c)-[:OFFERS]->(p);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (p:Product {id: 'prod_3_003'})
+CREATE (c)-[:OFFERS]->(p);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (cust:Customer {id: 'cust_3_001'})
+CREATE (c)-[:SERVES]->(cust);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (cust:Customer {id: 'cust_3_002'})
+CREATE (c)-[:SERVES]->(cust);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (cust:Customer {id: 'cust_3_003'})
+CREATE (c)-[:SERVES]->(cust);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (m:Market {id: 'mkt_3_001'})
+CREATE (c)-[:OPERATES_IN]->(m);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (comp:Competitor {id: 'comp_3_001'})
+CREATE (c)-[:COMPETES_WITH]->(comp);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (comp:Competitor {id: 'comp_3_002'})
+CREATE (c)-[:COMPETES_WITH]->(comp);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (comp:Competitor {id: 'comp_3_003'})
+CREATE (c)-[:COMPETES_WITH]->(comp);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (ou:OrganizationalUnit {id: 'ou_3_001'})
+CREATE (c)-[:HAS_UNIT]->(ou);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (ou:OrganizationalUnit {id: 'ou_3_002'})
+CREATE (c)-[:HAS_UNIT]->(ou);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (ou:OrganizationalUnit {id: 'ou_3_003'})
+CREATE (c)-[:HAS_UNIT]->(ou);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (ou:OrganizationalUnit {id: 'ou_3_004'})
+CREATE (c)-[:HAS_UNIT]->(ou);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (ou:OrganizationalUnit {id: 'ou_3_005'})
+CREATE (c)-[:HAS_UNIT]->(ou);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (sys:System {id: 'sys_3_001'})
+CREATE (c)-[:USES_SYSTEM]->(sys);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (sys:System {id: 'sys_3_002'})
+CREATE (c)-[:USES_SYSTEM]->(sys);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (sys:System {id: 'sys_3_003'})
+CREATE (c)-[:USES_SYSTEM]->(sys);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (sys:System {id: 'sys_3_004'})
+CREATE (c)-[:USES_SYSTEM]->(sys);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (sys:System {id: 'sys_3_005'})
+CREATE (c)-[:USES_SYSTEM]->(sys);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (cap:Capability {id: 'cap_3_001'})
+CREATE (c)-[:HAS_CAPABILITY]->(cap);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (cap:Capability {id: 'cap_3_002'})
+CREATE (c)-[:HAS_CAPABILITY]->(cap);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (cap:Capability {id: 'cap_3_003'})
+CREATE (c)-[:HAS_CAPABILITY]->(cap);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (cap:Capability {id: 'cap_3_004'})
+CREATE (c)-[:HAS_CAPABILITY]->(cap);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (cult:CultureAttribute {id: 'cult_3_001'})
+CREATE (c)-[:HAS_CULTURE]->(cult);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (cult:CultureAttribute {id: 'cult_3_002'})
+CREATE (c)-[:HAS_CULTURE]->(cult);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (cult:CultureAttribute {id: 'cult_3_003'})
+CREATE (c)-[:HAS_CULTURE]->(cult);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (cult:CultureAttribute {id: 'cult_3_004'})
+CREATE (c)-[:HAS_CULTURE]->(cult);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (fm:FinancialMetric {id: 'fm_3_001'})
+CREATE (c)-[:HAS_FINANCIAL_METRIC]->(fm);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (fm:FinancialMetric {id: 'fm_3_002'})
+CREATE (c)-[:HAS_FINANCIAL_METRIC]->(fm);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (fm:FinancialMetric {id: 'fm_3_003'})
+CREATE (c)-[:HAS_FINANCIAL_METRIC]->(fm);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (fm:FinancialMetric {id: 'fm_3_004'})
+CREATE (c)-[:HAS_FINANCIAL_METRIC]->(fm);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (a:Assessment {id: 'assess_3_001'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (a:Assessment {id: 'assess_3_002'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (a:Assessment {id: 'assess_3_003'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (a:Assessment {id: 'assess_3_004'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (a:Assessment {id: 'assess_3_005'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (a:Assessment {id: 'assess_3_006'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (r:Risk {id: 'risk_3_001'})
+CREATE (c)-[:FACES_RISK]->(r);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (r:Risk {id: 'risk_3_002'})
+CREATE (c)-[:FACES_RISK]->(r);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (r:Risk {id: 'risk_3_003'})
+CREATE (c)-[:FACES_RISK]->(r);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (r:Risk {id: 'risk_3_004'})
+CREATE (c)-[:FACES_RISK]->(r);
+
+MATCH (c:Company {id: 'comp_003'})
+MATCH (vs:ValueStream {id: 'vs_3_001'})
+CREATE (c)-[:HAS_VALUESTREAM]->(vs);
+
+// Product relationships
+MATCH (p:Product {id: 'prod_3_001'})
+MATCH (cust:Customer {id: 'cust_3_001'})
+CREATE (p)-[:CONSUMED_BY]->(cust);
+
+MATCH (p:Product {id: 'prod_3_001'})
+MATCH (cust:Customer {id: 'cust_3_002'})
+CREATE (p)-[:CONSUMED_BY]->(cust);
+
+MATCH (p:Product {id: 'prod_3_001'})
+MATCH (cust:Customer {id: 'cust_3_003'})
+CREATE (p)-[:CONSUMED_BY]->(cust);
+
+MATCH (p:Product {id: 'prod_3_002'})
+MATCH (cust:Customer {id: 'cust_3_001'})
+CREATE (p)-[:CONSUMED_BY]->(cust);
+
+MATCH (p:Product {id: 'prod_3_003'})
+MATCH (cust:Customer {id: 'cust_3_001'})
+CREATE (p)-[:CONSUMED_BY]->(cust);
+
+MATCH (p:Product {id: 'prod_3_001'})
+MATCH (proc:Process {id: 'proc_3_001'})
+CREATE (p)-[:DELIVERED_BY]->(proc);
+
+MATCH (p:Product {id: 'prod_3_003'})
+MATCH (proc:Process {id: 'proc_3_002'})
+CREATE (p)-[:DELIVERED_BY]->(proc);
+
+MATCH (p:Product {id: 'prod_3_001'})
+MATCH (kpi:KPI {id: 'kpi_3_004'})
+CREATE (p)-[:MEASURED_BY]->(kpi);
+
+MATCH (p:Product {id: 'prod_3_001'})
+MATCH (vs:ValueStream {id: 'vs_3_001'})
+CREATE (p)-[:PART_OF_VALUESTREAM]->(vs);
+
+// Customer relationships
+MATCH (cust:Customer {id: 'cust_3_001'})
+MATCH (m:Market {id: 'mkt_3_001'})
+CREATE (cust)-[:LOCATED_IN]->(m);
+
+MATCH (cust:Customer {id: 'cust_3_002'})
+MATCH (m:Market {id: 'mkt_3_001'})
+CREATE (cust)-[:LOCATED_IN]->(m);
+
+MATCH (cust:Customer {id: 'cust_3_003'})
+MATCH (m:Market {id: 'mkt_3_001'})
+CREATE (cust)-[:LOCATED_IN]->(m);
+
+MATCH (cust:Customer {id: 'cust_3_001'})
+MATCH (kpi:KPI {id: 'kpi_3_003'})
+CREATE (cust)-[:GENERATES_KPI]->(kpi);
+
+// Process relationships
+MATCH (proc:Process {id: 'proc_3_001'})
+MATCH (ou:OrganizationalUnit {id: 'ou_3_005'})
+CREATE (proc)-[:EXECUTED_BY]->(ou);
+
+MATCH (proc:Process {id: 'proc_3_002'})
+MATCH (ou:OrganizationalUnit {id: 'ou_3_002'})
+CREATE (proc)-[:EXECUTED_BY]->(ou);
+
+MATCH (proc:Process {id: 'proc_3_003'})
+MATCH (ou:OrganizationalUnit {id: 'ou_3_001'})
+CREATE (proc)-[:EXECUTED_BY]->(ou);
+
+MATCH (proc:Process {id: 'proc_3_004'})
+MATCH (ou:OrganizationalUnit {id: 'ou_3_003'})
+CREATE (proc)-[:EXECUTED_BY]->(ou);
+
+MATCH (proc:Process {id: 'proc_3_001'})
+MATCH (sys:System {id: 'sys_3_001'})
+CREATE (proc)-[:USES]->(sys);
+
+MATCH (proc:Process {id: 'proc_3_002'})
+MATCH (sys:System {id: 'sys_3_003'})
+CREATE (proc)-[:USES]->(sys);
+
+MATCH (proc:Process {id: 'proc_3_003'})
+MATCH (sys:System {id: 'sys_3_001'})
+CREATE (proc)-[:USES]->(sys);
+
+MATCH (proc:Process {id: 'proc_3_004'})
+MATCH (sys:System {id: 'sys_3_002'})
+CREATE (proc)-[:USES]->(sys);
+
+MATCH (proc:Process {id: 'proc_3_001'})
+MATCH (kpi:KPI {id: 'kpi_3_004'})
+CREATE (proc)-[:MEASURED_BY]->(kpi);
+
+MATCH (proc:Process {id: 'proc_3_002'})
+MATCH (kpi:KPI {id: 'kpi_3_005'})
+CREATE (proc)-[:MEASURED_BY]->(kpi);
+
+MATCH (proc:Process {id: 'proc_3_001'})
+MATCH (cap:Capability {id: 'cap_3_002'})
+CREATE (proc)-[:REQUIRES_CAPABILITY]->(cap);
+
+MATCH (proc:Process {id: 'proc_3_003'})
+MATCH (cap:Capability {id: 'cap_3_003'})
+CREATE (proc)-[:REQUIRES_CAPABILITY]->(cap);
+
+MATCH (proc:Process {id: 'proc_3_001'})
+MATCH (role:Role {id: 'role_3_001'})
+CREATE (proc)-[:SUPPORTED_BY]->(role);
+
+MATCH (proc:Process {id: 'proc_3_004'})
+MATCH (role:Role {id: 'role_3_003'})
+CREATE (proc)-[:SUPPORTED_BY]->(role);
+
+MATCH (proc:Process {id: 'proc_3_001'})
+MATCH (vs:ValueStream {id: 'vs_3_001'})
+CREATE (proc)-[:PART_OF_VALUESTREAM]->(vs);
+
+MATCH (proc:Process {id: 'proc_3_004'})
+MATCH (vs:ValueStream {id: 'vs_3_001'})
+CREATE (proc)-[:PART_OF_VALUESTREAM]->(vs);
+
+// Process dependencies
+MATCH (proc1:Process {id: 'proc_3_004'})
+MATCH (proc2:Process {id: 'proc_3_001'})
+CREATE (proc1)-[:PRECEDES]->(proc2);
+
+// KPI relationships
+MATCH (kpi:KPI {id: 'kpi_3_001'})
+MATCH (g:Goal {id: 'goal_3_001'})
+CREATE (kpi)-[:MEASURES]->(g);
+
+MATCH (kpi:KPI {id: 'kpi_3_002'})
+MATCH (g:Goal {id: 'goal_3_001'})
+CREATE (kpi)-[:MEASURES]->(g);
+
+MATCH (kpi:KPI {id: 'kpi_3_003'})
+MATCH (g:Goal {id: 'goal_3_002'})
+CREATE (kpi)-[:MEASURES]->(g);
+
+MATCH (kpi:KPI {id: 'kpi_3_004'})
+MATCH (proc:Process {id: 'proc_3_001'})
+CREATE (kpi)-[:TRACKS]->(proc);
+
+MATCH (kpi:KPI {id: 'kpi_3_005'})
+MATCH (proc:Process {id: 'proc_3_002'})
+CREATE (kpi)-[:TRACKS]->(proc);
+
+MATCH (kpi:KPI {id: 'kpi_3_003'})
+MATCH (a:Assessment {id: 'assess_3_003'})
+CREATE (kpi)-[:INDICATES]->(a);
+
+MATCH (kpi:KPI {id: 'kpi_3_004'})
+MATCH (a:Assessment {id: 'assess_3_002'})
+CREATE (kpi)-[:INDICATES]->(a);
+
+// Organizational structure
+MATCH (ou:OrganizationalUnit {id: 'ou_3_005'})
+MATCH (ou_parent:OrganizationalUnit {id: 'ou_3_002'})
+CREATE (ou)-[:REPORTS_TO]->(ou_parent);
+
+MATCH (ou:OrganizationalUnit {id: 'ou_3_001'})
+MATCH (pers:Person {id: 'pers_3_003'})
+CREATE (ou)-[:LED_BY]->(pers);
+
+MATCH (ou:OrganizationalUnit {id: 'ou_3_002'})
+MATCH (pers:Person {id: 'pers_3_004'})
+CREATE (ou)-[:LED_BY]->(pers);
+
+MATCH (ou:OrganizationalUnit {id: 'ou_3_005'})
+MATCH (pers:Person {id: 'pers_3_004'})
+CREATE (ou)-[:LED_BY]->(pers);
+
+MATCH (ou:OrganizationalUnit {id: 'ou_3_001'})
+MATCH (role:Role {id: 'role_3_002'})
+CREATE (ou)-[:HAS_ROLE]->(role);
+
+MATCH (ou:OrganizationalUnit {id: 'ou_3_002'})
+MATCH (role:Role {id: 'role_3_001'})
+CREATE (ou)-[:HAS_ROLE]->(role);
+
+MATCH (ou:OrganizationalUnit {id: 'ou_3_003'})
+MATCH (role:Role {id: 'role_3_003'})
+CREATE (ou)-[:HAS_ROLE]->(role);
+
+MATCH (ou:OrganizationalUnit {id: 'ou_3_001'})
+MATCH (cap:Capability {id: 'cap_3_003'})
+CREATE (ou)-[:OWNS_CAPABILITY]->(cap);
+
+MATCH (ou:OrganizationalUnit {id: 'ou_3_002'})
+MATCH (cap:Capability {id: 'cap_3_002'})
+CREATE (ou)-[:OWNS_CAPABILITY]->(cap);
+
+MATCH (ou:OrganizationalUnit {id: 'ou_3_002'})
+MATCH (cap:Capability {id: 'cap_3_004'})
+CREATE (ou)-[:OWNS_CAPABILITY]->(cap);
+
+// Person & Role relationships
+MATCH (pers:Person {id: 'pers_3_004'})
+MATCH (role:Role {id: 'role_3_001'})
+CREATE (pers)-[:HOLDS_ROLE]->(role);
+
+MATCH (pers:Person {id: 'pers_3_004'})
+MATCH (proc:Process {id: 'proc_3_001'})
+CREATE (pers)-[:RESPONSIBLE_FOR]->(proc);
+
+MATCH (pers:Person {id: 'pers_3_004'})
+MATCH (ou:OrganizationalUnit {id: 'ou_3_002'})
+CREATE (pers)-[:MANAGES]->(ou);
+
+// System relationships
+MATCH (sys1:System {id: 'sys_3_001'})
+MATCH (sys2:System {id: 'sys_3_002'})
+CREATE (sys1)-[:INTEGRATES_WITH]->(sys2);
+
+MATCH (sys1:System {id: 'sys_3_001'})
+MATCH (sys3:System {id: 'sys_3_003'})
+CREATE (sys1)-[:INTEGRATES_WITH]->(sys3);
+
+MATCH (sys1:System {id: 'sys_3_001'})
+MATCH (sys4:System {id: 'sys_3_004'})
+CREATE (sys1)-[:INTEGRATES_WITH]->(sys4);
+
+MATCH (sys:System {id: 'sys_3_001'})
+MATCH (sys2:System {id: 'sys_3_002'})
+CREATE (sys)-[:PROVIDES_DATA_TO]->(sys2);
+
+MATCH (sys:System {id: 'sys_3_001'})
+MATCH (sys4:System {id: 'sys_3_004'})
+CREATE (sys)-[:PROVIDES_DATA_TO]->(sys4);
+
+MATCH (sys:System {id: 'sys_3_001'})
+MATCH (proc:Process {id: 'proc_3_001'})
+CREATE (sys)-[:SUPPORTS]->(proc);
+
+MATCH (sys:System {id: 'sys_3_002'})
+MATCH (proc:Process {id: 'proc_3_004'})
+CREATE (sys)-[:SUPPORTS]->(proc);
+
+MATCH (sys:System {id: 'sys_3_003'})
+MATCH (proc:Process {id: 'proc_3_002'})
+CREATE (sys)-[:SUPPORTS]->(proc);
+
+MATCH (sys:System {id: 'sys_3_001'})
+MATCH (do:DataObject {id: 'do_3_001'})
+CREATE (sys)-[:MANAGES]->(do);
+
+MATCH (sys:System {id: 'sys_3_002'})
+MATCH (do:DataObject {id: 'do_3_002'})
+CREATE (sys)-[:MANAGES]->(do);
+
+MATCH (sys:System {id: 'sys_3_004'})
+MATCH (do:DataObject {id: 'do_3_003'})
+CREATE (sys)-[:MANAGES]->(do);
+
+// Interface relationships
+MATCH (int:Interface {id: 'int_3_001'})
+MATCH (sys:System {id: 'sys_3_001'})
+CREATE (sys)-[:HAS_INTERFACE]->(int);
+
+MATCH (int:Interface {id: 'int_3_001'})
+MATCH (sys:System {id: 'sys_3_002'})
+CREATE (int)-[:CONNECTS_TO]->(sys);
+
+MATCH (int:Interface {id: 'int_3_002'})
+MATCH (sys:System {id: 'sys_3_001'})
+CREATE (sys)-[:HAS_INTERFACE]->(int);
+
+MATCH (int:Interface {id: 'int_3_002'})
+MATCH (sys:System {id: 'sys_3_003'})
+CREATE (int)-[:CONNECTS_TO]->(sys);
+
+MATCH (int:Interface {id: 'int_3_003'})
+MATCH (sys:System {id: 'sys_3_001'})
+CREATE (sys)-[:HAS_INTERFACE]->(int);
+
+MATCH (int:Interface {id: 'int_3_003'})
+MATCH (sys:System {id: 'sys_3_004'})
+CREATE (int)-[:CONNECTS_TO]->(sys);
+
+MATCH (int:Interface {id: 'int_3_001'})
+MATCH (do:DataObject {id: 'do_3_002'})
+CREATE (int)-[:EXCHANGES]->(do);
+
+MATCH (int:Interface {id: 'int_3_003'})
+MATCH (do:DataObject {id: 'do_3_003'})
+CREATE (int)-[:EXCHANGES]->(do);
+
+// Assessment relationships
+MATCH (a:Assessment {id: 'assess_3_001'})
+MATCH (cap:Capability {id: 'cap_3_001'})
+CREATE (a)-[:RELATES_TO]->(cap);
+
+MATCH (a:Assessment {id: 'assess_3_002'})
+MATCH (proc:Process {id: 'proc_3_001'})
+CREATE (a)-[:RELATES_TO]->(proc);
+
+MATCH (a:Assessment {id: 'assess_3_003'})
+MATCH (kpi:KPI {id: 'kpi_3_003'})
+CREATE (a)-[:RELATES_TO]->(kpi);
+
+MATCH (a:Assessment {id: 'assess_3_004'})
+MATCH (cult:CultureAttribute {id: 'cult_3_002'})
+CREATE (a)-[:RELATES_TO]->(cult);
+
+MATCH (a:Assessment {id: 'assess_3_004'})
+MATCH (cult2:CultureAttribute {id: 'cult_3_004'})
+CREATE (a)-[:RELATES_TO]->(cult2);
+
+MATCH (a:Assessment {id: 'assess_3_005'})
+MATCH (m:Market {id: 'mkt_3_001'})
+CREATE (a)-[:RELATES_TO]->(m);
+
+MATCH (a:Assessment {id: 'assess_3_006'})
+MATCH (fm:FinancialMetric {id: 'fm_3_003'})
+CREATE (a)-[:RELATES_TO]->(fm);
+
+MATCH (a:Assessment {id: 'assess_3_006'})
+MATCH (r:Risk {id: 'risk_3_001'})
+CREATE (a)-[:RELATES_TO]->(r);
+
+MATCH (a:Assessment {id: 'assess_3_001'})
+MATCH (act:ActionItem {id: 'act_3_003'})
+CREATE (a)-[:LEADS_TO]->(act);
+
+MATCH (a:Assessment {id: 'assess_3_002'})
+MATCH (act:ActionItem {id: 'act_3_001'})
+CREATE (a)-[:LEADS_TO]->(act);
+
+MATCH (a:Assessment {id: 'assess_3_003'})
+MATCH (act:ActionItem {id: 'act_3_002'})
+CREATE (a)-[:LEADS_TO]->(act);
+
+MATCH (a:Assessment {id: 'assess_3_004'})
+MATCH (act:ActionItem {id: 'act_3_004'})
+CREATE (a)-[:LEADS_TO]->(act);
+
+MATCH (a:Assessment {id: 'assess_3_005'})
+MATCH (act:ActionItem {id: 'act_3_005'})
+CREATE (a)-[:LEADS_TO]->(act);
+
+MATCH (a:Assessment {id: 'assess_3_006'})
+MATCH (act:ActionItem {id: 'act_3_006'})
+CREATE (a)-[:LEADS_TO]->(act);
+
+// Action Item relationships
+MATCH (act:ActionItem {id: 'act_3_001'})
+MATCH (a:Assessment {id: 'assess_3_002'})
+CREATE (act)-[:ADDRESSES]->(a);
+
+MATCH (act:ActionItem {id: 'act_3_002'})
+MATCH (a:Assessment {id: 'assess_3_003'})
+CREATE (act)-[:ADDRESSES]->(a);
+
+MATCH (act:ActionItem {id: 'act_3_003'})
+MATCH (a:Assessment {id: 'assess_3_004'})
+CREATE (act)-[:ADDRESSES]->(a);
+
+MATCH (act:ActionItem {id: 'act_3_004'})
+MATCH (a:Assessment {id: 'assess_3_004'})
+CREATE (act)-[:ADDRESSES]->(a);
+
+MATCH (act:ActionItem {id: 'act_3_005'})
+MATCH (a:Assessment {id: 'assess_3_005'})
+CREATE (act)-[:ADDRESSES]->(a);
+
+MATCH (act:ActionItem {id: 'act_3_006'})
+MATCH (a:Assessment {id: 'assess_3_006'})
+CREATE (act)-[:ADDRESSES]->(a);
+
+MATCH (act:ActionItem {id: 'act_3_001'})
+MATCH (g:Goal {id: 'goal_3_002'})
+CREATE (act)-[:SUPPORTS]->(g);
+
+MATCH (act:ActionItem {id: 'act_3_002'})
+MATCH (g:Goal {id: 'goal_3_002'})
+CREATE (act)-[:SUPPORTS]->(g);
+
+MATCH (act:ActionItem {id: 'act_3_006'})
+MATCH (g:Goal {id: 'goal_3_001'})
+CREATE (act)-[:SUPPORTS]->(g);

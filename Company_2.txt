@@ -1,0 +1,1210 @@
+// ============================================
+// BEISPIEL 2: FinTech Startup - "PayFlow Digital AG"
+// ============================================
+
+// --- Create Company ---
+CREATE (c2:Company {
+  id: 'comp_002',
+  name: 'PayFlow Digital AG',
+  industry: 'Financial Technology',
+  sector: 'FinTech',
+  founded_year: 2019,
+  legal_form: 'AG',
+  employee_count: 85,
+  headquarters: 'Zürich, Switzerland',
+  mission: 'Democratizing financial services through innovative payment solutions',
+  vision: 'To become the leading B2B payment platform in Europe by 2028',
+  created_at: datetime(),
+  updated_at: datetime()
+});
+
+// --- Create Goals ---
+CREATE (g2_1:Goal {
+  id: 'goal_2_001',
+  name: 'Achieve Profitability',
+  description: 'Reach break-even and positive EBITDA by Q4 2025',
+  timeframe: 'short-term',
+  priority: 'high',
+  status: 'in_progress',
+  target_date: date('2025-12-31'),
+  progress_percentage: 68.0
+});
+
+CREATE (g2_2:Goal {
+  id: 'goal_2_002',
+  name: 'Scale to 500 Enterprise Customers',
+  description: 'Grow customer base from 180 to 500 enterprise clients',
+  timeframe: 'mid-term',
+  priority: 'high',
+  status: 'in_progress',
+  target_date: date('2026-12-31'),
+  progress_percentage: 36.0
+});
+
+CREATE (g2_3:Goal {
+  id: 'goal_2_003',
+  name: 'Obtain PSD2 Banking License',
+  description: 'Secure full banking license to expand service offerings',
+  timeframe: 'mid-term',
+  priority: 'high',
+  status: 'planned',
+  target_date: date('2027-06-30'),
+  progress_percentage: 22.0
+});
+
+// --- Create Products ---
+CREATE (p2_1:Product {
+  id: 'prod_2_001',
+  name: 'PayFlow API Platform',
+  description: 'API-first payment processing platform for B2B transactions',
+  product_type: 'product',
+  lifecycle_stage: 'growth',
+  revenue_contribution: 62.5,
+  launch_date: date('2020-09-01')
+});
+
+CREATE (p2_2:Product {
+  id: 'prod_2_002',
+  name: 'Fraud Detection AI',
+  description: 'Real-time AI-powered fraud detection and prevention system',
+  product_type: 'product',
+  lifecycle_stage: 'introduction',
+  revenue_contribution: 18.3,
+  launch_date: date('2024-02-15')
+});
+
+CREATE (p2_3:Product {
+  id: 'prod_2_003',
+  name: 'Enterprise Integration Services',
+  description: 'Custom integration and onboarding services for large clients',
+  product_type: 'service',
+  lifecycle_stage: 'maturity',
+  revenue_contribution: 19.2,
+  launch_date: date('2021-03-01')
+});
+
+// --- Create Customers ---
+CREATE (cust2_1:Customer {
+  id: 'cust_2_001',
+  name: 'E-Commerce Giant GmbH',
+  segment: 'B2B',
+  type: 'key_account',
+  revenue_contribution: 28.5,
+  relationship_start: date('2021-11-15'),
+  geography: 'Germany',
+  lifetime_value: 4200000.0,
+  nps_score: 78,
+  strategic_importance: 'tier_a'
+});
+
+CREATE (cust2_2:Customer {
+  id: 'cust_2_002',
+  name: 'Swiss Retail Federation',
+  segment: 'B2B',
+  type: 'strategic_partner',
+  revenue_contribution: 22.1,
+  relationship_start: date('2022-03-20'),
+  geography: 'Switzerland',
+  lifetime_value: 3100000.0,
+  nps_score: 82,
+  strategic_importance: 'tier_a'
+});
+
+CREATE (cust2_3:Customer {
+  id: 'cust_2_003',
+  name: 'Nordic Marketplace AB',
+  segment: 'B2B',
+  type: 'regular',
+  revenue_contribution: 11.2,
+  relationship_start: date('2023-07-10'),
+  geography: 'Sweden',
+  lifetime_value: 850000.0,
+  nps_score: 71,
+  strategic_importance: 'tier_b'
+});
+
+// --- Create Processes ---
+CREATE (proc2_1:Process {
+  id: 'proc_2_001',
+  name: 'Payment Transaction Processing',
+  category: 'core',
+  description: 'Real-time processing of payment transactions',
+  process_type: 'transaction_processing',
+  digitalization_level: 95.0,
+  automation_level: 92.0,
+  documented: true,
+  cycle_time: 2,
+  error_rate: 0.08,
+  maturity_level: 4
+});
+
+CREATE (proc2_2:Process {
+  id: 'proc_2_002',
+  name: 'Customer Onboarding & KYC',
+  category: 'core',
+  description: 'Customer verification and onboarding process',
+  process_type: 'compliance',
+  digitalization_level: 78.0,
+  automation_level: 65.0,
+  documented: true,
+  cycle_time: 7,
+  error_rate: 2.5,
+  maturity_level: 3
+});
+
+CREATE (proc2_3:Process {
+  id: 'proc_2_003',
+  name: 'Incident Management',
+  category: 'support',
+  description: 'Technical incident response and resolution',
+  process_type: 'it_operations',
+  digitalization_level: 85.0,
+  automation_level: 55.0,
+  documented: true,
+  cycle_time: 4,
+  error_rate: 1.2,
+  maturity_level: 3
+});
+
+CREATE (proc2_4:Process {
+  id: 'proc_2_004',
+  name: 'Software Development Lifecycle',
+  category: 'core',
+  description: 'Agile software development and deployment process',
+  process_type: 'development',
+  digitalization_level: 88.0,
+  automation_level: 75.0,
+  documented: true,
+  cycle_time: 14,
+  error_rate: 3.8,
+  maturity_level: 4
+});
+
+// --- Create KPIs ---
+CREATE (kpi2_1:KPI {
+  id: 'kpi_2_001',
+  name: 'Monthly Recurring Revenue (MRR)',
+  category: 'financial',
+  description: 'Monthly recurring revenue from subscription customers',
+  unit: 'EUR',
+  current_value: 285000.0,
+  target_value: 450000.0,
+  trend: 'improving',
+  measurement_frequency: 'monthly',
+  last_measured: date('2025-01-31'),
+  threshold_red: 200000.0,
+  threshold_yellow: 300000.0,
+  threshold_green: 450000.0,
+  owner: 'CEO'
+});
+
+CREATE (kpi2_2:KPI {
+  id: 'kpi_2_002',
+  name: 'Transaction Success Rate',
+  category: 'operational',
+  description: 'Percentage of successfully processed transactions',
+  unit: '%',
+  current_value: 99.92,
+  target_value: 99.95,
+  trend: 'stable',
+  measurement_frequency: 'daily',
+  last_measured: date('2025-02-15'),
+  threshold_red: 99.50,
+  threshold_yellow: 99.85,
+  threshold_green: 99.95,
+  owner: 'CTO'
+});
+
+CREATE (kpi2_3:KPI {
+  id: 'kpi_2_003',
+  name: 'Customer Churn Rate',
+  category: 'customer',
+  description: 'Monthly customer churn rate',
+  unit: '%',
+  current_value: 3.2,
+  target_value: 2.0,
+  trend: 'declining',
+  measurement_frequency: 'monthly',
+  last_measured: date('2025-01-31'),
+  threshold_red: 5.0,
+  threshold_yellow: 3.5,
+  threshold_green: 2.0,
+  owner: 'CCO'
+});
+
+CREATE (kpi2_4:KPI {
+  id: 'kpi_2_004',
+  name: 'API Uptime',
+  category: 'operational',
+  description: 'Platform availability percentage',
+  unit: '%',
+  current_value: 99.87,
+  target_value: 99.95,
+  trend: 'improving',
+  measurement_frequency: 'real_time',
+  last_measured: date('2025-02-15'),
+  threshold_red: 99.50,
+  threshold_yellow: 99.80,
+  threshold_green: 99.95,
+  owner: 'CTO'
+});
+
+CREATE (kpi2_5:KPI {
+  id: 'kpi_2_005',
+  name: 'Developer NPS',
+  category: 'customer',
+  description: 'Net Promoter Score from API developers',
+  unit: 'score',
+  current_value: 68.0,
+  target_value: 80.0,
+  trend: 'stable',
+  measurement_frequency: 'quarterly',
+  last_measured: date('2024-12-31'),
+  threshold_red: 40.0,
+  threshold_yellow: 60.0,
+  threshold_green: 80.0,
+  owner: 'CPO'
+});
+
+// --- Create Organizational Units ---
+CREATE (ou2_1:OrganizationalUnit {
+  id: 'ou_2_001',
+  name: 'Engineering',
+  type: 'department',
+  employee_count: 42,
+  budget: 3500000.0,
+  cost_center: 'CC-2100'
+});
+
+CREATE (ou2_2:OrganizationalUnit {
+  id: 'ou_2_002',
+  name: 'Product & Growth',
+  type: 'department',
+  employee_count: 18,
+  budget: 1200000.0,
+  cost_center: 'CC-2200'
+});
+
+CREATE (ou2_3:OrganizationalUnit {
+  id: 'ou_2_003',
+  name: 'Compliance & Risk',
+  type: 'department',
+  employee_count: 12,
+  budget: 800000.0,
+  cost_center: 'CC-2300'
+});
+
+CREATE (ou2_4:OrganizationalUnit {
+  id: 'ou_2_004',
+  name: 'Customer Success',
+  type: 'department',
+  employee_count: 13,
+  budget: 650000.0,
+  cost_center: 'CC-2400'
+});
+
+// --- Create Persons ---
+CREATE (pers2_1:Person {
+  id: 'pers_2_001',
+  name: 'Laura Schneider',
+  title: 'CEO & Co-Founder',
+  tenure_years: 6.0,
+  background: 'Former McKinsey consultant, FinTech entrepreneur',
+  is_key_decision_maker: true
+});
+
+CREATE (pers2_2:Person {
+  id: 'pers_2_002',
+  name: 'David Chen',
+  title: 'CTO & Co-Founder',
+  tenure_years: 6.0,
+  background: 'Ex-Google engineer, payments infrastructure expert',
+  is_key_decision_maker: true
+});
+
+CREATE (pers2_3:Person {
+  id: 'pers_2_003',
+  name: 'Sophie Maier',
+  title: 'Head of Compliance',
+  tenure_years: 3.2,
+  background: 'Former banking regulator, compliance specialist',
+  is_key_decision_maker: false
+});
+
+// --- Create Roles ---
+CREATE (role2_1:Role {
+  id: 'role_2_001',
+  title: 'Backend Engineer',
+  level: 'junior',
+  department: 'Engineering',
+  responsibilities: 'Develop and maintain payment processing infrastructure',
+  headcount: 18
+});
+
+CREATE (role2_2:Role {
+  id: 'role_2_002',
+  title: 'Product Manager',
+  level: 'middle',
+  department: 'Product & Growth',
+  responsibilities: 'Define product roadmap and feature prioritization',
+  headcount: 5
+});
+
+CREATE (role2_3:Role {
+  id: 'role_2_003',
+  title: 'Customer Success Manager',
+  level: 'middle',
+  department: 'Customer Success',
+  responsibilities: 'Ensure customer satisfaction and retention',
+  headcount: 8
+});
+
+// --- Create Capabilities ---
+CREATE (cap2_1:Capability {
+  id: 'cap_2_001',
+  name: 'API-First Architecture',
+  type: 'technical',
+  maturity_level: 5,
+  description: 'Excellence in building scalable API infrastructure',
+  is_competitive_advantage: true,
+  current_maturity: 5,
+  target_maturity: 5,
+  gap_size: 0,
+  development_priority: 'low'
+});
+
+CREATE (cap2_2:Capability {
+  id: 'cap_2_002',
+  name: 'Regulatory Compliance',
+  type: 'organizational',
+  maturity_level: 3,
+  description: 'Managing financial regulations and compliance requirements',
+  is_competitive_advantage: false,
+  current_maturity: 3,
+  target_maturity: 5,
+  gap_size: 2,
+  development_priority: 'high'
+});
+
+CREATE (cap2_3:Capability {
+  id: 'cap_2_003',
+  name: 'Customer Onboarding',
+  type: 'commercial',
+  maturity_level: 2,
+  description: 'Efficient customer acquisition and onboarding',
+  is_competitive_advantage: false,
+  current_maturity: 2,
+  target_maturity: 4,
+  gap_size: 2,
+  development_priority: 'high'
+});
+
+CREATE (cap2_4:Capability {
+  id: 'cap_2_004',
+  name: 'Machine Learning Operations',
+  type: 'technical',
+  maturity_level: 3,
+  description: 'Deploying and maintaining AI/ML models in production',
+  is_competitive_advantage: true,
+  current_maturity: 3,
+  target_maturity: 4,
+  gap_size: 1,
+  development_priority: 'medium'
+});
+
+// --- Create Systems ---
+CREATE (sys2_1:System {
+  id: 'sys_2_001',
+  name: 'Core Payment Engine',
+  type: 'custom',
+  vendor: 'Internal',
+  version: '3.2.1',
+  implementation_date: date('2020-09-01'),
+  integration_level: 100.0,
+  user_count: 85
+});
+
+CREATE (sys2_2:System {
+  id: 'sys_2_002',
+  name: 'Salesforce',
+  type: 'CRM',
+  vendor: 'Salesforce',
+  version: 'Enterprise',
+  implementation_date: date('2021-06-01'),
+  integration_level: 85.0,
+  user_count: 31
+});
+
+CREATE (sys2_3:System {
+  id: 'sys_2_003',
+  name: 'Sumsub KYC',
+  type: 'compliance',
+  vendor: 'Sumsub',
+  version: 'Enterprise',
+  implementation_date: date('2022-01-15'),
+  integration_level: 90.0,
+  user_count: 85
+});
+
+CREATE (sys2_4:System {
+  id: 'sys_2_004',
+  name: 'Datadog',
+  type: 'monitoring',
+  vendor: 'Datadog',
+  version: 'Pro',
+  implementation_date: date('2021-03-01'),
+  integration_level: 95.0,
+  user_count: 42
+});
+
+// --- Create Culture Attributes ---
+CREATE (cult2_1:CultureAttribute {
+  id: 'cult_2_001',
+  dimension: 'innovation_culture',
+  description: 'Fast-paced startup culture with rapid experimentation',
+  score: 88.0,
+  is_strength: true
+});
+
+CREATE (cult2_2:CultureAttribute {
+  id: 'cult_2_002',
+  dimension: 'work_life_balance',
+  description: 'High workload intensity, some burnout concerns',
+  score: 52.0,
+  is_strength: false
+});
+
+CREATE (cult2_3:CultureAttribute {
+  id: 'cult_2_003',
+  dimension: 'transparency',
+  description: 'Strong culture of open communication and transparency',
+  score: 82.0,
+  is_strength: true
+});
+
+CREATE (cult2_4:CultureAttribute {
+  id: 'cult_2_004',
+  dimension: 'process_maturity',
+  description: 'Processes still developing, some operational chaos',
+  score: 48.0,
+  is_strength: false
+});
+
+// --- Create Market ---
+CREATE (mkt2:Market {
+  id: 'mkt_2_001',
+  name: 'European B2B Payment Solutions',
+  geography: 'European Union',
+  size_eur: 45000000000.0,
+  growth_rate: 18.5,
+  maturity: 'growing'
+});
+
+// --- Create Competitors ---
+CREATE (comp2_1:Competitor {
+  id: 'comp_2_001',
+  name: 'Stripe',
+  market_share: 32.5,
+  competitive_position: 'leader',
+  main_differentiators: 'Brand recognition, extensive ecosystem, global reach'
+});
+
+CREATE (comp2_2:Competitor {
+  id: 'comp_2_002',
+  name: 'Adyen',
+  market_share: 18.3,
+  competitive_position: 'leader',
+  main_differentiators: 'Enterprise focus, unified commerce platform'
+});
+
+CREATE (comp2_3:Competitor {
+  id: 'comp_2_003',
+  name: 'Mollie',
+  market_share: 8.7,
+  competitive_position: 'challenger',
+  main_differentiators: 'European focus, SMB-friendly pricing'
+});
+
+// --- Create Financial Metrics ---
+CREATE (fm2_1:FinancialMetric {
+  id: 'fm_2_001',
+  metric_name: 'Annual Recurring Revenue',
+  value: 3420000.0,
+  currency: 'EUR',
+  fiscal_year: 2024,
+  quarter: 4,
+  comparison_to_previous: 142.5,
+  industry_benchmark: 85.0
+});
+
+CREATE (fm2_2:FinancialMetric {
+  id: 'fm_2_002',
+  metric_name: 'EBITDA',
+  value: -850000.0,
+  currency: 'EUR',
+  fiscal_year: 2024,
+  quarter: 4,
+  comparison_to_previous: 45.2,
+  industry_benchmark: -15.0
+});
+
+CREATE (fm2_3:FinancialMetric {
+  id: 'fm_2_003',
+  metric_name: 'Burn Rate',
+  value: 220000.0,
+  currency: 'EUR',
+  fiscal_year: 2024,
+  quarter: 4,
+  comparison_to_previous: -28.5,
+  industry_benchmark: -12.0
+});
+
+CREATE (fm2_4:FinancialMetric {
+  id: 'fm_2_004',
+  metric_name: 'Customer Acquisition Cost',
+  value: 8500.0,
+  currency: 'EUR',
+  fiscal_year: 2024,
+  quarter: 4,
+  comparison_to_previous: -12.3,
+  industry_benchmark: -8.0
+});
+
+// --- Create Assessments ---
+CREATE (assess2_1:Assessment {
+  id: 'assess_2_001',
+  type: 'strength',
+  category: 'technical',
+  description: 'World-class API infrastructure with 99.87% uptime provides strong technical foundation',
+  impact: 'high',
+  identified_date: date('2025-01-15'),
+  consultant_notes: 'Technical excellence is clear competitive advantage. Should be marketed more aggressively. Infrastructure can support 10x growth without major investment.'
+});
+
+CREATE (assess2_2:Assessment {
+  id: 'assess_2_002',
+  type: 'weakness',
+  category: 'operational',
+  description: 'Customer onboarding process takes 7 days on average, slowing growth velocity',
+  severity: 'high',
+  identified_date: date('2025-01-15'),
+  consultant_notes: 'KYC/compliance requirements create bottleneck. Competitors onboard in 2-3 days. Automation opportunity with estimated 60% time reduction possible.'
+});
+
+CREATE (assess2_3:Assessment {
+  id: 'assess_2_003',
+  type: 'weakness',
+  category: 'cultural',
+  description: 'High-intensity work culture leading to burnout risk and potential talent loss',
+  severity: 'medium',
+  identified_date: date('2025-01-15'),
+  consultant_notes: 'Work-life balance score of 52/100 is concerning. Exit interviews mention unsustainable pace. Risk to scaling if not addressed.'
+});
+
+CREATE (assess2_4:Assessment {
+  id: 'assess_2_004',
+  type: 'opportunity',
+  category: 'market',
+  description: 'European B2B payments market growing at 18.5% annually with regulatory tailwinds',
+  impact: 'high',
+  identified_date: date('2025-01-15'),
+  consultant_notes: 'PSD2 and open banking creating massive opportunities. Company well-positioned as European-native player. First-mover advantage window still open.'
+});
+
+CREATE (assess2_5:Assessment {
+  id: 'assess_2_005',
+  type: 'threat',
+  category: 'strategic',
+  description: 'Major players like Stripe expanding European presence could squeeze market position',
+  severity: 'high',
+  identified_date: date('2025-01-15'),
+  consultant_notes: 'Competitive pressure increasing. Need differentiation strategy beyond just "European alternative". Banking license could be key differentiator.'
+});
+
+CREATE (assess2_6:Assessment {
+  id: 'assess_2_006',
+  type: 'weakness',
+  category: 'financial',
+  description: 'Current burn rate gives ~18 months runway, need profitability or new funding',
+  severity: 'high',
+  identified_date: date('2025-01-15'),
+  consultant_notes: 'Path to profitability exists but requires execution discipline. Alternative is Series B which would dilute founders. Unit economics improving but not yet at scale.'
+});
+
+// --- Create Action Items ---
+CREATE (act2_1:ActionItem {
+  id: 'act_2_001',
+  title: 'Automate KYC Verification Process',
+  description: 'Implement AI-powered identity verification to reduce onboarding time from 7 to 2 days',
+  priority: 'quick_win',
+  effort: 'medium',
+  expected_impact: 'high',
+  timeframe: 'immediate',
+  status: 'proposed',
+  estimated_cost: 180000.0,
+  expected_roi: 4.5
+});
+
+CREATE (act2_2:ActionItem {
+  id: 'act_2_002',
+  title: 'Launch Technical Differentiation Campaign',
+  description: 'Developer-focused marketing highlighting API capabilities and uptime',
+  priority: 'high',
+  effort: 'low',
+  expected_impact: 'medium',
+  timeframe: 'immediate',
+  status: 'proposed',
+  estimated_cost: 95000.0,
+  expected_roi: 3.2
+});
+
+CREATE (act2_3:ActionItem {
+  id: 'act_2_003',
+  title: 'Implement Sustainable Pace Initiative',
+  description: 'Introduce work-life balance policies and hire additional team members',
+  priority: 'medium',
+  effort: 'medium',
+  expected_impact: 'medium',
+  timeframe: 'short_term',
+  status: 'proposed',
+  estimated_cost: 320000.0,
+  expected_roi: 2.1
+});
+
+CREATE (act2_4:ActionItem {
+  id: 'act_2_004',
+  title: 'Accelerate Banking License Application',
+  description: 'Fast-track PSD2 banking license to differentiate from competitors',
+  priority: 'high',
+  effort: 'high',
+  expected_impact: 'high',
+  timeframe: 'mid_term',
+  status: 'proposed',
+  estimated_cost: 850000.0,
+  expected_roi: 5.8
+});
+
+CREATE (act2_5:ActionItem {
+  id: 'act_2_005',
+  title: 'Optimize Unit Economics',
+  description: 'Focus on reducing CAC and improving customer LTV ratios',
+  priority: 'high',
+  effort: 'medium',
+  expected_impact: 'high',
+  timeframe: 'short_term',
+  status: 'proposed',
+  estimated_cost: 150000.0,
+  expected_roi: 6.2
+});
+
+// --- Create Risks ---
+CREATE (risk2_1:Risk {
+  id: 'risk_2_001',
+  name: 'Funding Runway',
+  category: 'financial',
+  description: '18-month runway creates pressure to achieve profitability or raise Series B',
+  probability: 'high',
+  impact: 'critical',
+  mitigation_strategy: 'Accelerate path to profitability through CAC reduction and pricing optimization',
+  status: 'mitigating'
+});
+
+CREATE (risk2_2:Risk {
+  id: 'risk_2_002',
+  name: 'Regulatory Changes',
+  category: 'compliance',
+  description: 'Evolving EU payment regulations could require significant adaptation',
+  probability: 'medium',
+  impact: 'high',
+  mitigation_strategy: 'Maintain active regulatory monitoring and build flexible compliance architecture',
+  status: 'monitoring'
+});
+
+CREATE (risk2_3:Risk {
+  id: 'risk_2_003',
+  name: 'Tech Talent Shortage',
+  category: 'operational',
+  description: 'High competition for senior engineers in Zürich market',
+  probability: 'high',
+  impact: 'medium',
+  mitigation_strategy: 'Implement remote-first policy and competitive equity compensation',
+  status: 'mitigating'
+});
+
+// --- Create ValueStream ---
+CREATE (vs2:ValueStream {
+  id: 'vs_2_001',
+  name: 'Customer-to-Payment-Value',
+  description: 'End-to-end value stream from customer signup to first transaction',
+  value_added_percentage: 68.0,
+  cycle_time: 9,
+  lead_time: 15
+});
+
+// --- Create DataObjects ---
+CREATE (do2_1:DataObject {
+  id: 'do_2_001',
+  name: 'Transaction Data',
+  type: 'transactional_data',
+  quality_score: 98.0,
+  availability: 'high',
+  update_frequency: 'real_time'
+});
+
+CREATE (do2_2:DataObject {
+  id: 'do_2_002',
+  name: 'Customer KYC Data',
+  type: 'master_data',
+  quality_score: 88.0,
+  availability: 'high',
+  update_frequency: 'as_needed'
+});
+
+CREATE (do2_3:DataObject {
+  id: 'do_2_003',
+  name: 'API Usage Metrics',
+  type: 'analytical_data',
+  quality_score: 95.0,
+  availability: 'high',
+  update_frequency: 'real_time'
+});
+
+// --- Create Interfaces ---
+CREATE (int2_1:Interface {
+  id: 'int_2_001',
+  name: 'Core-to-KYC Integration',
+  source_system: 'Core Payment Engine',
+  target_system: 'Sumsub KYC',
+  protocol: 'REST API',
+  data_volume: 1500,
+  latency: 2
+});
+
+CREATE (int2_2:Interface {
+  id: 'int_2_002',
+  name: 'Core-to-CRM Sync',
+  source_system: 'Core Payment Engine',
+  target_system: 'Salesforce',
+  protocol: 'Webhook',
+  data_volume: 8000,
+  latency: 1
+});
+
+// ======================================
+// RELATIONSHIPS FOR COMPANY 2
+// ======================================
+
+// Company relationships
+MATCH (c:Company {id: 'comp_002'})
+MATCH (g:Goal {id: 'goal_2_001'})
+CREATE (c)-[:HAS_GOAL]->(g);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (g:Goal {id: 'goal_2_002'})
+CREATE (c)-[:HAS_GOAL]->(g);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (g:Goal {id: 'goal_2_003'})
+CREATE (c)-[:HAS_GOAL]->(g);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (p:Product {id: 'prod_2_001'})
+CREATE (c)-[:OFFERS]->(p);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (p:Product {id: 'prod_2_002'})
+CREATE (c)-[:OFFERS]->(p);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (p:Product {id: 'prod_2_003'})
+CREATE (c)-[:OFFERS]->(p);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (cust:Customer {id: 'cust_2_001'})
+CREATE (c)-[:SERVES]->(cust);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (cust:Customer {id: 'cust_2_002'})
+CREATE (c)-[:SERVES]->(cust);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (cust:Customer {id: 'cust_2_003'})
+CREATE (c)-[:SERVES]->(cust);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (m:Market {id: 'mkt_2_001'})
+CREATE (c)-[:OPERATES_IN]->(m);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (comp:Competitor {id: 'comp_2_001'})
+CREATE (c)-[:COMPETES_WITH]->(comp);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (comp:Competitor {id: 'comp_2_002'})
+CREATE (c)-[:COMPETES_WITH]->(comp);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (comp:Competitor {id: 'comp_2_003'})
+CREATE (c)-[:COMPETES_WITH]->(comp);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (ou:OrganizationalUnit {id: 'ou_2_001'})
+CREATE (c)-[:HAS_UNIT]->(ou);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (ou:OrganizationalUnit {id: 'ou_2_002'})
+CREATE (c)-[:HAS_UNIT]->(ou);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (ou:OrganizationalUnit {id: 'ou_2_003'})
+CREATE (c)-[:HAS_UNIT]->(ou);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (ou:OrganizationalUnit {id: 'ou_2_004'})
+CREATE (c)-[:HAS_UNIT]->(ou);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (sys:System {id: 'sys_2_001'})
+CREATE (c)-[:USES_SYSTEM]->(sys);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (sys:System {id: 'sys_2_002'})
+CREATE (c)-[:USES_SYSTEM]->(sys);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (sys:System {id: 'sys_2_003'})
+CREATE (c)-[:USES_SYSTEM]->(sys);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (sys:System {id: 'sys_2_004'})
+CREATE (c)-[:USES_SYSTEM]->(sys);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (cap:Capability {id: 'cap_2_001'})
+CREATE (c)-[:HAS_CAPABILITY]->(cap);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (cap:Capability {id: 'cap_2_002'})
+CREATE (c)-[:HAS_CAPABILITY]->(cap);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (cap:Capability {id: 'cap_2_003'})
+CREATE (c)-[:HAS_CAPABILITY]->(cap);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (cap:Capability {id: 'cap_2_004'})
+CREATE (c)-[:HAS_CAPABILITY]->(cap);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (cult:CultureAttribute {id: 'cult_2_001'})
+CREATE (c)-[:HAS_CULTURE]->(cult);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (cult:CultureAttribute {id: 'cult_2_002'})
+CREATE (c)-[:HAS_CULTURE]->(cult);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (cult:CultureAttribute {id: 'cult_2_003'})
+CREATE (c)-[:HAS_CULTURE]->(cult);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (cult:CultureAttribute {id: 'cult_2_004'})
+CREATE (c)-[:HAS_CULTURE]->(cult);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (fm:FinancialMetric {id: 'fm_2_001'})
+CREATE (c)-[:HAS_FINANCIAL_METRIC]->(fm);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (fm:FinancialMetric {id: 'fm_2_002'})
+CREATE (c)-[:HAS_FINANCIAL_METRIC]->(fm);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (fm:FinancialMetric {id: 'fm_2_003'})
+CREATE (c)-[:HAS_FINANCIAL_METRIC]->(fm);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (fm:FinancialMetric {id: 'fm_2_004'})
+CREATE (c)-[:HAS_FINANCIAL_METRIC]->(fm);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (a:Assessment {id: 'assess_2_001'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (a:Assessment {id: 'assess_2_002'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (a:Assessment {id: 'assess_2_003'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (a:Assessment {id: 'assess_2_004'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (a:Assessment {id: 'assess_2_005'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (a:Assessment {id: 'assess_2_006'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (r:Risk {id: 'risk_2_001'})
+CREATE (c)-[:FACES_RISK]->(r);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (r:Risk {id: 'risk_2_002'})
+CREATE (c)-[:FACES_RISK]->(r);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (r:Risk {id: 'risk_2_003'})
+CREATE (c)-[:FACES_RISK]->(r);
+
+MATCH (c:Company {id: 'comp_002'})
+MATCH (vs:ValueStream {id: 'vs_2_001'})
+CREATE (c)-[:HAS_VALUESTREAM]->(vs);
+
+// Product relationships
+MATCH (p:Product {id: 'prod_2_001'})
+MATCH (cust:Customer {id: 'cust_2_001'})
+CREATE (p)-[:CONSUMED_BY]->(cust);
+
+MATCH (p:Product {id: 'prod_2_001'})
+MATCH (cust:Customer {id: 'cust_2_002'})
+CREATE (p)-[:CONSUMED_BY]->(cust);
+
+MATCH (p:Product {id: 'prod_2_002'})
+MATCH (cust:Customer {id: 'cust_2_001'})
+CREATE (p)-[:CONSUMED_BY]->(cust);
+
+MATCH (p:Product {id: 'prod_2_001'})
+MATCH (proc:Process {id: 'proc_2_001'})
+CREATE (p)-[:DELIVERED_BY]->(proc);
+
+MATCH (p:Product {id: 'prod_2_001'})
+MATCH (kpi:KPI {id: 'kpi_2_002'})
+CREATE (p)-[:MEASURED_BY]->(kpi);
+
+MATCH (p:Product {id: 'prod_2_001'})
+MATCH (vs:ValueStream {id: 'vs_2_001'})
+CREATE (p)-[:PART_OF_VALUESTREAM]->(vs);
+
+// Customer relationships
+MATCH (cust:Customer {id: 'cust_2_001'})
+MATCH (m:Market {id: 'mkt_2_001'})
+CREATE (cust)-[:LOCATED_IN]->(m);
+
+MATCH (cust:Customer {id: 'cust_2_002'})
+MATCH (m:Market {id: 'mkt_2_001'})
+CREATE (cust)-[:LOCATED_IN]->(m);
+
+MATCH (cust:Customer {id: 'cust_2_003'})
+MATCH (m:Market {id: 'mkt_2_001'})
+CREATE (cust)-[:LOCATED_IN]->(m);
+
+// Process relationships
+MATCH (proc:Process {id: 'proc_2_001'})
+MATCH (ou:OrganizationalUnit {id: 'ou_2_001'})
+CREATE (proc)-[:EXECUTED_BY]->(ou);
+
+MATCH (proc:Process {id: 'proc_2_002'})
+MATCH (ou:OrganizationalUnit {id: 'ou_2_003'})
+CREATE (proc)-[:EXECUTED_BY]->(ou);
+
+MATCH (proc:Process {id: 'proc_2_003'})
+MATCH (ou:OrganizationalUnit {id: 'ou_2_001'})
+CREATE (proc)-[:EXECUTED_BY]->(ou);
+
+MATCH (proc:Process {id: 'proc_2_004'})
+MATCH (ou:OrganizationalUnit {id: 'ou_2_001'})
+CREATE (proc)-[:EXECUTED_BY]->(ou);
+
+MATCH (proc:Process {id: 'proc_2_001'})
+MATCH (sys:System {id: 'sys_2_001'})
+CREATE (proc)-[:USES]->(sys);
+
+MATCH (proc:Process {id: 'proc_2_002'})
+MATCH (sys:System {id: 'sys_2_003'})
+CREATE (proc)-[:USES]->(sys);
+
+MATCH (proc:Process {id: 'proc_2_001'})
+MATCH (kpi:KPI {id: 'kpi_2_002'})
+CREATE (proc)-[:MEASURED_BY]->(kpi);
+
+MATCH (proc:Process {id: 'proc_2_002'})
+MATCH (cap:Capability {id: 'cap_2_002'})
+CREATE (proc)-[:REQUIRES_CAPABILITY]->(cap);
+
+MATCH (proc:Process {id: 'proc_2_001'})
+MATCH (cap:Capability {id: 'cap_2_001'})
+CREATE (proc)-[:REQUIRES_CAPABILITY]->(cap);
+
+MATCH (proc:Process {id: 'proc_2_001'})
+MATCH (vs:ValueStream {id: 'vs_2_001'})
+CREATE (proc)-[:PART_OF_VALUESTREAM]->(vs);
+
+MATCH (proc:Process {id: 'proc_2_002'})
+MATCH (vs:ValueStream {id: 'vs_2_001'})
+CREATE (proc)-[:PART_OF_VALUESTREAM]->(vs);
+
+// Process dependencies
+MATCH (proc2:Process {id: 'proc_2_002'})
+MATCH (proc1:Process {id: 'proc_2_001'})
+CREATE (proc2)-[:PRECEDES]->(proc1);
+
+// KPI relationships
+MATCH (kpi:KPI {id: 'kpi_2_001'})
+MATCH (g:Goal {id: 'goal_2_001'})
+CREATE (kpi)-[:MEASURES]->(g);
+
+MATCH (kpi:KPI {id: 'kpi_2_003'})
+MATCH (g:Goal {id: 'goal_2_002'})
+CREATE (kpi)-[:MEASURES]->(g);
+
+MATCH (kpi:KPI {id: 'kpi_2_002'})
+MATCH (proc:Process {id: 'proc_2_001'})
+CREATE (kpi)-[:TRACKS]->(proc);
+
+MATCH (kpi:KPI {id: 'kpi_2_003'})
+MATCH (a:Assessment {id: 'assess_2_002'})
+CREATE (kpi)-[:INDICATES]->(a);
+
+// Organizational structure
+MATCH (ou:OrganizationalUnit {id: 'ou_2_001'})
+MATCH (pers:Person {id: 'pers_2_002'})
+CREATE (ou)-[:LED_BY]->(pers);
+
+MATCH (ou:OrganizationalUnit {id: 'ou_2_003'})
+MATCH (pers:Person {id: 'pers_2_003'})
+CREATE (ou)-[:LED_BY]->(pers);
+
+MATCH (ou:OrganizationalUnit {id: 'ou_2_001'})
+MATCH (role:Role {id: 'role_2_001'})
+CREATE (ou)-[:HAS_ROLE]->(role);
+
+MATCH (ou:OrganizationalUnit {id: 'ou_2_002'})
+MATCH (role:Role {id: 'role_2_002'})
+CREATE (ou)-[:HAS_ROLE]->(role);
+
+MATCH (ou:OrganizationalUnit {id: 'ou_2_004'})
+MATCH (role:Role {id: 'role_2_003'})
+CREATE (ou)-[:HAS_ROLE]->(role);
+
+MATCH (ou:OrganizationalUnit {id: 'ou_2_001'})
+MATCH (cap:Capability {id: 'cap_2_001'})
+CREATE (ou)-[:OWNS_CAPABILITY]->(cap);
+
+MATCH (ou:OrganizationalUnit {id: 'ou_2_003'})
+MATCH (cap:Capability {id: 'cap_2_002'})
+CREATE (ou)-[:OWNS_CAPABILITY]->(cap);
+
+// System relationships
+MATCH (sys1:System {id: 'sys_2_001'})
+MATCH (sys2:System {id: 'sys_2_003'})
+CREATE (sys1)-[:INTEGRATES_WITH]->(sys2);
+
+MATCH (sys1:System {id: 'sys_2_001'})
+MATCH (sys3:System {id: 'sys_2_002'})
+CREATE (sys1)-[:INTEGRATES_WITH]->(sys3);
+
+MATCH (sys:System {id: 'sys_2_001'})
+MATCH (proc:Process {id: 'proc_2_001'})
+CREATE (sys)-[:SUPPORTS]->(proc);
+
+MATCH (sys:System {id: 'sys_2_001'})
+MATCH (do:DataObject {id: 'do_2_001'})
+CREATE (sys)-[:MANAGES]->(do);
+
+MATCH (sys:System {id: 'sys_2_003'})
+MATCH (do:DataObject {id: 'do_2_002'})
+CREATE (sys)-[:MANAGES]->(do);
+
+// Interface relationships
+MATCH (int:Interface {id: 'int_2_001'})
+MATCH (sys:System {id: 'sys_2_001'})
+CREATE (sys)-[:HAS_INTERFACE]->(int);
+
+MATCH (int:Interface {id: 'int_2_001'})
+MATCH (sys:System {id: 'sys_2_003'})
+CREATE (int)-[:CONNECTS_TO]->(sys);
+
+MATCH (int:Interface {id: 'int_2_002'})
+MATCH (sys:System {id: 'sys_2_001'})
+CREATE (sys)-[:HAS_INTERFACE]->(int);
+
+MATCH (int:Interface {id: 'int_2_002'})
+MATCH (sys:System {id: 'sys_2_002'})
+CREATE (int)-[:CONNECTS_TO]->(sys);
+
+MATCH (int:Interface {id: 'int_2_001'})
+MATCH (do:DataObject {id: 'do_2_002'})
+CREATE (int)-[:EXCHANGES]->(do);
+
+// Assessment relationships
+MATCH (a:Assessment {id: 'assess_2_001'})
+MATCH (cap:Capability {id: 'cap_2_001'})
+CREATE (a)-[:RELATES_TO]->(cap);
+
+MATCH (a:Assessment {id: 'assess_2_002'})
+MATCH (proc:Process {id: 'proc_2_002'})
+CREATE (a)-[:RELATES_TO]->(proc);
+
+MATCH (a:Assessment {id: 'assess_2_003'})
+MATCH (cult:CultureAttribute {id: 'cult_2_002'})
+CREATE (a)-[:RELATES_TO]->(cult);
+
+MATCH (a:Assessment {id: 'assess_2_004'})
+MATCH (m:Market {id: 'mkt_2_001'})
+CREATE (a)-[:RELATES_TO]->(m);
+
+MATCH (a:Assessment {id: 'assess_2_005'})
+MATCH (r:Risk {id: 'risk_2_001'})
+CREATE (a)-[:RELATES_TO]->(r);
+
+MATCH (a:Assessment {id: 'assess_2_006'})
+MATCH (r:Risk {id: 'risk_2_001'})
+CREATE (a)-[:RELATES_TO]->(r);
+
+MATCH (a:Assessment {id: 'assess_2_001'})
+MATCH (act:ActionItem {id: 'act_2_002'})
+CREATE (a)-[:LEADS_TO]->(act);
+
+MATCH (a:Assessment {id: 'assess_2_002'})
+MATCH (act:ActionItem {id: 'act_2_001'})
+CREATE (a)-[:LEADS_TO]->(act);
+
+MATCH (a:Assessment {id: 'assess_2_003'})
+MATCH (act:ActionItem {id: 'act_2_003'})
+CREATE (a)-[:LEADS_TO]->(act);
+
+MATCH (a:Assessment {id: 'assess_2_005'})
+MATCH (act:ActionItem {id: 'act_2_004'})
+CREATE (a)-[:LEADS_TO]->(act);
+
+MATCH (a:Assessment {id: 'assess_2_006'})
+MATCH (act:ActionItem {id: 'act_2_005'})
+CREATE (a)-[:LEADS_TO]->(act);
+
+// Action Item relationships
+MATCH (act:ActionItem {id: 'act_2_001'})
+MATCH (a:Assessment {id: 'assess_2_002'})
+CREATE (act)-[:ADDRESSES]->(a);
+
+MATCH (act:ActionItem {id: 'act_2_002'})
+MATCH (a:Assessment {id: 'assess_2_001'})
+CREATE (act)-[:ADDRESSES]->(a);
+
+MATCH (act:ActionItem {id: 'act_2_003'})
+MATCH (a:Assessment {id: 'assess_2_003'})
+CREATE (act)-[:ADDRESSES]->(a);
+
+MATCH (act:ActionItem {id: 'act_2_004'})
+MATCH (g:Goal {id: 'goal_2_003'})
+CREATE (act)-[:SUPPORTS]->(g);
+
+MATCH (act:ActionItem {id: 'act_2_005'})
+MATCH (g:Goal {id: 'goal_2_001'})
+CREATE (act)-[:SUPPORTS]->(g);

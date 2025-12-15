@@ -1,0 +1,1575 @@
+// ============================================
+// NEO4J COMPANY PROFILE SCHEMA
+// Digital Twin of Organizations (DTO)
+// GraphRAG für Unternehmensprofile
+// ============================================
+
+// ============================================
+// 1. CONSTRAINTS & INDEXES
+// ============================================
+
+// Company (Organization)
+CREATE CONSTRAINT company_id IF NOT EXISTS 
+FOR (c:Company) REQUIRE c.id IS UNIQUE;
+
+CREATE INDEX company_name IF NOT EXISTS 
+FOR (c:Company) ON (c.name);
+
+CREATE INDEX company_industry IF NOT EXISTS 
+FOR (c:Company) ON (c.industry);
+
+// Goal
+CREATE CONSTRAINT goal_id IF NOT EXISTS 
+FOR (g:Goal) REQUIRE g.id IS UNIQUE;
+
+CREATE INDEX goal_priority IF NOT EXISTS 
+FOR (g:Goal) ON (g.priority);
+
+CREATE INDEX goal_status IF NOT EXISTS 
+FOR (g:Goal) ON (g.status);
+
+// Product/Service
+CREATE CONSTRAINT product_id IF NOT EXISTS 
+FOR (p:Product) REQUIRE p.id IS UNIQUE;
+
+CREATE INDEX product_lifecycle IF NOT EXISTS 
+FOR (p:Product) ON (p.lifecycle_stage);
+
+// Customer
+CREATE CONSTRAINT customer_id IF NOT EXISTS 
+FOR (c:Customer) REQUIRE c.id IS UNIQUE;
+
+CREATE INDEX customer_segment IF NOT EXISTS 
+FOR (c:Customer) ON (c.segment);
+
+// Process
+CREATE CONSTRAINT process_id IF NOT EXISTS 
+FOR (p:Process) REQUIRE p.id IS UNIQUE;
+
+CREATE INDEX process_category IF NOT EXISTS 
+FOR (p:Process) ON (p.category);
+
+CREATE INDEX process_type IF NOT EXISTS 
+FOR (p:Process) ON (p.process_type);
+
+// KPI
+CREATE CONSTRAINT kpi_id IF NOT EXISTS 
+FOR (k:KPI) REQUIRE k.id IS UNIQUE;
+
+CREATE INDEX kpi_category IF NOT EXISTS 
+FOR (k:KPI) ON (k.category);
+
+CREATE INDEX kpi_trend IF NOT EXISTS 
+FOR (k:KPI) ON (k.trend);
+
+// OrganizationalUnit
+CREATE CONSTRAINT unit_id IF NOT EXISTS 
+FOR (ou:OrganizationalUnit) REQUIRE ou.id IS UNIQUE;
+
+CREATE INDEX unit_type IF NOT EXISTS 
+FOR (ou:OrganizationalUnit) ON (ou.type);
+
+// Role
+CREATE CONSTRAINT role_id IF NOT EXISTS 
+FOR (r:Role) REQUIRE r.id IS UNIQUE;
+
+CREATE INDEX role_level IF NOT EXISTS 
+FOR (r:Role) ON (r.level);
+
+// Person
+CREATE CONSTRAINT person_id IF NOT EXISTS 
+FOR (p:Person) REQUIRE p.id IS UNIQUE;
+
+// Capability
+CREATE CONSTRAINT capability_id IF NOT EXISTS 
+FOR (c:Capability) REQUIRE c.id IS UNIQUE;
+
+CREATE INDEX capability_maturity IF NOT EXISTS 
+FOR (c:Capability) ON (c.maturity_level);
+
+// System
+CREATE CONSTRAINT system_id IF NOT EXISTS 
+FOR (s:System) REQUIRE s.id IS UNIQUE;
+
+CREATE INDEX system_type IF NOT EXISTS 
+FOR (s:System) ON (s.type);
+
+// CultureAttribute
+CREATE CONSTRAINT culture_id IF NOT EXISTS 
+FOR (c:CultureAttribute) REQUIRE c.id IS UNIQUE;
+
+CREATE INDEX culture_dimension IF NOT EXISTS 
+FOR (c:CultureAttribute) ON (c.dimension);
+
+// Market
+CREATE CONSTRAINT market_id IF NOT EXISTS 
+FOR (m:Market) REQUIRE m.id IS UNIQUE;
+
+// Competitor
+CREATE CONSTRAINT competitor_id IF NOT EXISTS 
+FOR (c:Competitor) REQUIRE c.id IS UNIQUE;
+
+// FinancialMetric
+CREATE CONSTRAINT financial_metric_id IF NOT EXISTS 
+FOR (fm:FinancialMetric) REQUIRE fm.id IS UNIQUE;
+
+CREATE INDEX financial_metric_year IF NOT EXISTS 
+FOR (fm:FinancialMetric) ON (fm.fiscal_year);
+
+// Risk
+CREATE CONSTRAINT risk_id IF NOT EXISTS 
+FOR (r:Risk) REQUIRE r.id IS UNIQUE;
+
+CREATE INDEX risk_category IF NOT EXISTS 
+FOR (r:Risk) ON (r.category);
+
+CREATE INDEX risk_impact IF NOT EXISTS 
+FOR (r:Risk) ON (r.impact);
+
+// Assessment
+CREATE CONSTRAINT assessment_id IF NOT EXISTS 
+FOR (a:Assessment) REQUIRE a.id IS UNIQUE;
+
+CREATE INDEX assessment_type IF NOT EXISTS 
+FOR (a:Assessment) ON (a.type);
+
+CREATE INDEX assessment_severity IF NOT EXISTS 
+FOR (a:Assessment) ON (a.severity);
+
+// ActionItem
+CREATE CONSTRAINT action_id IF NOT EXISTS 
+FOR (a:ActionItem) REQUIRE a.id IS UNIQUE;
+
+CREATE INDEX action_priority IF NOT EXISTS 
+FOR (a:ActionItem) ON (a.priority);
+
+CREATE INDEX action_status IF NOT EXISTS 
+FOR (a:ActionItem) ON (a.status);
+
+// ValueStream
+CREATE CONSTRAINT valuestream_id IF NOT EXISTS 
+FOR (vs:ValueStream) REQUIRE vs.id IS UNIQUE;
+
+// DataObjects
+CREATE CONSTRAINT dataobject_id IF NOT EXISTS 
+FOR (d:DataObject) REQUIRE d.id IS UNIQUE;
+
+// Interface
+CREATE CONSTRAINT interface_id IF NOT EXISTS 
+FOR (i:Interface) REQUIRE i.id IS UNIQUE;
+
+
+// ============================================
+// 2. SAMPLE DATA CREATION
+// ============================================
+
+// --- Create Company ---
+CREATE (c:Company {
+  id: 'comp_001',
+  name: 'TechCorp Manufacturing GmbH',
+  industry: 'Industrial Automation',
+  sector: 'Manufacturing',
+  founded_year: 1995,
+  legal_form: 'GmbH',
+  employee_count: 450,
+  headquarters: 'Stuttgart, Germany',
+  mission: 'Delivering innovative automation solutions for Industry 4.0',
+  vision: 'To be the leading automation partner in DACH region by 2030',
+  created_at: datetime(),
+  updated_at: datetime()
+});
+
+// --- Create Goals ---
+CREATE (g1:Goal {
+  id: 'goal_001',
+  name: 'Increase Market Share',
+  description: 'Grow market share in DACH region from 8% to 12%',
+  timeframe: 'mid-term',
+  priority: 'high',
+  status: 'in_progress',
+  target_date: date('2026-12-31'),
+  progress_percentage: 35.0
+});
+
+CREATE (g2:Goal {
+  id: 'goal_002',
+  name: 'Digital Transformation',
+  description: 'Digitalize 80% of core processes',
+  timeframe: 'short-term',
+  priority: 'high',
+  status: 'in_progress',
+  target_date: date('2025-12-31'),
+  progress_percentage: 55.0
+});
+
+CREATE (g3:Goal {
+  id: 'goal_003',
+  name: 'Reduce Employee Turnover',
+  description: 'Lower turnover rate from 8.5% to 6%',
+  timeframe: 'short-term',
+  priority: 'medium',
+  status: 'planned',
+  target_date: date('2026-06-30'),
+  progress_percentage: 15.0
+});
+
+// --- Create Products ---
+CREATE (p1:Product {
+  id: 'prod_001',
+  name: 'SmartControl X500',
+  description: 'Industrial automation controller with AI capabilities',
+  product_type: 'product',
+  lifecycle_stage: 'growth',
+  revenue_contribution: 45.5,
+  launch_date: date('2022-03-15')
+});
+
+CREATE (p2:Product {
+  id: 'prod_002',
+  name: 'Consulting & Integration Services',
+  description: 'Custom automation integration and consulting',
+  product_type: 'service',
+  lifecycle_stage: 'maturity',
+  revenue_contribution: 30.2,
+  launch_date: date('2010-01-01')
+});
+
+CREATE (p3:Product {
+  id: 'prod_003',
+  name: 'SmartSensor Pro',
+  description: 'IoT-enabled industrial sensor system',
+  product_type: 'product',
+  lifecycle_stage: 'introduction',
+  revenue_contribution: 12.3,
+  launch_date: date('2024-06-01')
+});
+
+// --- Create Customers ---
+CREATE (cust1:Customer {
+  id: 'cust_001',
+  name: 'AutoMotive AG',
+  segment: 'B2B',
+  type: 'key_account',
+  revenue_contribution: 18.5,
+  relationship_start: date('2015-06-01'),
+  geography: 'Germany',
+  lifetime_value: 5200000.0,
+  nps_score: 72,
+  strategic_importance: 'tier_a'
+});
+
+CREATE (cust2:Customer {
+  id: 'cust_002',
+  name: 'ChemTech Industries',
+  segment: 'B2B',
+  type: 'strategic_partner',
+  revenue_contribution: 14.2,
+  relationship_start: date('2018-03-12'),
+  geography: 'Switzerland',
+  lifetime_value: 3800000.0,
+  nps_score: 65,
+  strategic_importance: 'tier_a'
+});
+
+CREATE (cust3:Customer {
+  id: 'cust_003',
+  name: 'Industrial Solutions GmbH',
+  segment: 'B2B',
+  type: 'regular',
+  revenue_contribution: 8.1,
+  relationship_start: date('2020-09-20'),
+  geography: 'Austria',
+  lifetime_value: 1200000.0,
+  nps_score: 58,
+  strategic_importance: 'tier_b'
+});
+
+// --- Create Processes ---
+CREATE (proc1:Process {
+  id: 'proc_001',
+  name: 'Order to Cash',
+  category: 'core',
+  description: 'Complete order processing from customer order to payment',
+  process_type: 'order_to_cash',
+  digitalization_level: 65.0,
+  automation_level: 55.0,
+  documented: true,
+  cycle_time: 21,
+  error_rate: 3.2,
+  maturity_level: 3
+});
+
+CREATE (proc2:Process {
+  id: 'proc_002',
+  name: 'Production Planning',
+  category: 'core',
+  description: 'Planning and scheduling of production orders',
+  process_type: 'production',
+  digitalization_level: 45.0,
+  automation_level: 40.0,
+  documented: true,
+  cycle_time: 14,
+  error_rate: 5.8,
+  maturity_level: 2
+});
+
+CREATE (proc3:Process {
+  id: 'proc_003',
+  name: 'Purchase to Pay',
+  category: 'core',
+  description: 'Procurement process from requisition to payment',
+  process_type: 'purchase_to_pay',
+  digitalization_level: 70.0,
+  automation_level: 60.0,
+  documented: true,
+  cycle_time: 18,
+  error_rate: 2.1,
+  maturity_level: 3
+});
+
+CREATE (proc4:Process {
+  id: 'proc_004',
+  name: 'Employee Onboarding',
+  category: 'support',
+  description: 'HR onboarding process for new employees',
+  process_type: 'hr',
+  digitalization_level: 50.0,
+  automation_level: 35.0,
+  documented: true,
+  cycle_time: 45,
+  error_rate: 8.5,
+  maturity_level: 2
+});
+
+// --- Create KPIs ---
+CREATE (kpi1:KPI {
+  id: 'kpi_001',
+  name: 'EBITDA Margin',
+  category: 'financial',
+  description: 'Earnings before interest, taxes, depreciation, and amortization',
+  unit: '%',
+  current_value: 12.5,
+  target_value: 15.0,
+  trend: 'improving',
+  measurement_frequency: 'quarterly',
+  last_measured: date('2024-12-31'),
+  threshold_red: 8.0,
+  threshold_yellow: 12.0,
+  threshold_green: 15.0,
+  owner: 'CFO'
+});
+
+CREATE (kpi2:KPI {
+  id: 'kpi_002',
+  name: 'Order Lead Time',
+  category: 'process',
+  description: 'Average time from order receipt to delivery',
+  unit: 'days',
+  current_value: 28.0,
+  target_value: 20.0,
+  trend: 'stable',
+  measurement_frequency: 'weekly',
+  last_measured: date('2025-01-15'),
+  threshold_red: 35.0,
+  threshold_yellow: 28.0,
+  threshold_green: 20.0,
+  owner: 'COO'
+});
+
+CREATE (kpi3:KPI {
+  id: 'kpi_003',
+  name: 'Employee Turnover',
+  category: 'hr',
+  description: 'Annual employee turnover rate',
+  unit: '%',
+  current_value: 8.5,
+  target_value: 6.0,
+  trend: 'declining',
+  measurement_frequency: 'monthly',
+  last_measured: date('2025-01-31'),
+  threshold_red: 12.0,
+  threshold_yellow: 8.0,
+  threshold_green: 6.0,
+  owner: 'CHRO'
+});
+
+CREATE (kpi4:KPI {
+  id: 'kpi_004',
+  name: 'Customer Satisfaction (NPS)',
+  category: 'customer',
+  description: 'Net Promoter Score',
+  unit: 'score',
+  current_value: 65.0,
+  target_value: 75.0,
+  trend: 'improving',
+  measurement_frequency: 'quarterly',
+  last_measured: date('2024-12-31'),
+  threshold_red: 40.0,
+  threshold_yellow: 60.0,
+  threshold_green: 75.0,
+  owner: 'CSO'
+});
+
+CREATE (kpi5:KPI {
+  id: 'kpi_005',
+  name: 'Production Error Rate',
+  category: 'operational',
+  description: 'Percentage of defective products',
+  unit: '%',
+  current_value: 2.8,
+  target_value: 1.5,
+  trend: 'stable',
+  measurement_frequency: 'daily',
+  last_measured: date('2025-01-20'),
+  threshold_red: 5.0,
+  threshold_yellow: 3.0,
+  threshold_green: 1.5,
+  owner: 'Production Manager'
+});
+
+// --- Create Organizational Units ---
+CREATE (ou1:OrganizationalUnit {
+  id: 'ou_001',
+  name: 'Sales & Marketing',
+  type: 'department',
+  employee_count: 45,
+  budget: 2500000.0,
+  cost_center: 'CC-100'
+});
+
+CREATE (ou2:OrganizationalUnit {
+  id: 'ou_002',
+  name: 'Operations',
+  type: 'department',
+  employee_count: 250,
+  budget: 15000000.0,
+  cost_center: 'CC-200'
+});
+
+CREATE (ou3:OrganizationalUnit {
+  id: 'ou_003',
+  name: 'R&D',
+  type: 'department',
+  employee_count: 80,
+  budget: 5000000.0,
+  cost_center: 'CC-300'
+});
+
+CREATE (ou4:OrganizationalUnit {
+  id: 'ou_004',
+  name: 'Human Resources',
+  type: 'department',
+  employee_count: 15,
+  budget: 800000.0,
+  cost_center: 'CC-400'
+});
+
+CREATE (ou5:OrganizationalUnit {
+  id: 'ou_005',
+  name: 'IT',
+  type: 'department',
+  employee_count: 25,
+  budget: 1800000.0,
+  cost_center: 'CC-500'
+});
+
+CREATE (ou6:OrganizationalUnit {
+  id: 'ou_006',
+  name: 'Production Team A',
+  type: 'team',
+  employee_count: 35,
+  budget: 2000000.0,
+  cost_center: 'CC-201'
+});
+
+// --- Create Persons ---
+CREATE (pers1:Person {
+  id: 'pers_001',
+  name: 'Maria Schmidt',
+  title: 'COO',
+  tenure_years: 8.5,
+  background: 'Operations management expert with lean manufacturing focus',
+  is_key_decision_maker: true
+});
+
+CREATE (pers2:Person {
+  id: 'pers_002',
+  name: 'Thomas Müller',
+  title: 'CFO',
+  tenure_years: 5.2,
+  background: 'Former Big4 consultant, M&A specialist',
+  is_key_decision_maker: true
+});
+
+CREATE (pers3:Person {
+  id: 'pers_003',
+  name: 'Anna Weber',
+  title: 'CTO',
+  tenure_years: 3.8,
+  background: 'Software engineering background, IoT expert',
+  is_key_decision_maker: true
+});
+
+CREATE (pers4:Person {
+  id: 'pers_004',
+  name: 'Stefan Klein',
+  title: 'Head of Production',
+  tenure_years: 12.5,
+  background: 'Long-tenured production expert',
+  is_key_decision_maker: false
+});
+
+// --- Create Roles ---
+CREATE (role1:Role {
+  id: 'role_001',
+  title: 'Operations Manager',
+  level: 'middle',
+  department: 'Operations',
+  responsibilities: 'Oversee daily operations and process optimization',
+  headcount: 12
+});
+
+CREATE (role2:Role {
+  id: 'role_002',
+  title: 'Sales Manager',
+  level: 'middle',
+  department: 'Sales & Marketing',
+  responsibilities: 'Manage sales team and customer relationships',
+  headcount: 8
+});
+
+CREATE (role3:Role {
+  id: 'role_003',
+  title: 'Software Engineer',
+  level: 'junior',
+  department: 'R&D',
+  responsibilities: 'Develop and maintain software solutions',
+  headcount: 25
+});
+
+// --- Create Capabilities ---
+CREATE (cap1:Capability {
+  id: 'cap_001',
+  name: 'AI-Driven Automation',
+  type: 'technical',
+  maturity_level: 4,
+  description: 'Expertise in developing AI-powered automation solutions',
+  is_competitive_advantage: true,
+  current_maturity: 4,
+  target_maturity: 5,
+  gap_size: 1,
+  development_priority: 'high'
+});
+
+CREATE (cap2:Capability {
+  id: 'cap_002',
+  name: 'Change Management',
+  type: 'organizational',
+  maturity_level: 2,
+  description: 'Ability to manage organizational change effectively',
+  is_competitive_advantage: false,
+  current_maturity: 2,
+  target_maturity: 4,
+  gap_size: 2,
+  development_priority: 'high'
+});
+
+CREATE (cap3:Capability {
+  id: 'cap_003',
+  name: 'Lean Manufacturing',
+  type: 'operational',
+  maturity_level: 3,
+  description: 'Lean principles and continuous improvement',
+  is_competitive_advantage: true,
+  current_maturity: 3,
+  target_maturity: 4,
+  gap_size: 1,
+  development_priority: 'medium'
+});
+
+CREATE (cap4:Capability {
+  id: 'cap_004',
+  name: 'Customer Relationship Management',
+  type: 'commercial',
+  maturity_level: 3,
+  description: 'Building and maintaining strong customer relationships',
+  is_competitive_advantage: false,
+  current_maturity: 3,
+  target_maturity: 4,
+  gap_size: 1,
+  development_priority: 'medium'
+});
+
+// --- Create Systems ---
+CREATE (sys1:System {
+  id: 'sys_001',
+  name: 'SAP S/4HANA',
+  type: 'ERP',
+  vendor: 'SAP',
+  version: '2021',
+  implementation_date: date('2021-06-01'),
+  integration_level: 75.0,
+  user_count: 380
+});
+
+CREATE (sys2:System {
+  id: 'sys_002',
+  name: 'Salesforce',
+  type: 'CRM',
+  vendor: 'Salesforce',
+  version: 'Enterprise',
+  implementation_date: date('2020-03-01'),
+  integration_level: 60.0,
+  user_count: 52
+});
+
+CREATE (sys3:System {
+  id: 'sys_003',
+  name: 'Workday HCM',
+  type: 'HRM',
+  vendor: 'Workday',
+  version: 'R42',
+  implementation_date: date('2022-01-15'),
+  integration_level: 50.0,
+  user_count: 450
+});
+
+CREATE (sys4:System {
+  id: 'sys_004',
+  name: 'Tableau',
+  type: 'BI',
+  vendor: 'Salesforce',
+  version: '2023.3',
+  implementation_date: date('2023-04-01'),
+  integration_level: 65.0,
+  user_count: 85
+});
+
+// --- Create Culture Attributes ---
+CREATE (cult1:CultureAttribute {
+  id: 'cult_001',
+  dimension: 'innovation_culture',
+  description: 'Strong culture of innovation and experimentation',
+  score: 75.0,
+  is_strength: true
+});
+
+CREATE (cult2:CultureAttribute {
+  id: 'cult_002',
+  dimension: 'decision_making',
+  description: 'Decision-making is overly hierarchical, slowing down responses',
+  score: 45.0,
+  is_strength: false
+});
+
+CREATE (cult3:CultureAttribute {
+  id: 'cult_003',
+  dimension: 'collaboration',
+  description: 'Good cross-functional collaboration between teams',
+  score: 68.0,
+  is_strength: true
+});
+
+CREATE (cult4:CultureAttribute {
+  id: 'cult_004',
+  dimension: 'error_culture',
+  description: 'Moderate fear of failure, limits experimentation',
+  score: 52.0,
+  is_strength: false
+});
+
+// --- Create Market ---
+CREATE (mkt1:Market {
+  id: 'mkt_001',
+  name: 'DACH Industrial Automation',
+  geography: 'Germany, Austria, Switzerland',
+  size_eur: 8500000000.0,
+  growth_rate: 4.5,
+  maturity: 'growing'
+});
+
+// --- Create Competitors ---
+CREATE (comp1:Competitor {
+  id: 'comp_001',
+  name: 'AutoTech Solutions GmbH',
+  market_share: 15.5,
+  competitive_position: 'leader',
+  main_differentiators: 'Strong brand recognition and extensive service network'
+});
+
+CREATE (comp2:Competitor {
+  id: 'comp_002',
+  name: 'SmartFactory AG',
+  market_share: 12.3,
+  competitive_position: 'challenger',
+  main_differentiators: 'Lower prices and fast delivery times'
+});
+
+CREATE (comp3:Competitor {
+  id: 'comp_003',
+  name: 'Industrial AI Systems',
+  market_share: 8.7,
+  competitive_position: 'niche',
+  main_differentiators: 'Cutting-edge AI technology but limited product range'
+});
+
+// --- Create Financial Metrics ---
+CREATE (fm1:FinancialMetric {
+  id: 'fm_001',
+  metric_name: 'Revenue',
+  value: 52000000.0,
+  currency: 'EUR',
+  fiscal_year: 2024,
+  quarter: 4,
+  comparison_to_previous: 8.5,
+  industry_benchmark: 6.2
+});
+
+CREATE (fm2:FinancialMetric {
+  id: 'fm_002',
+  metric_name: 'EBITDA',
+  value: 6500000.0,
+  currency: 'EUR',
+  fiscal_year: 2024,
+  quarter: 4,
+  comparison_to_previous: 12.3,
+  industry_benchmark: 10.5
+});
+
+CREATE (fm3:FinancialMetric {
+  id: 'fm_003',
+  metric_name: 'Operating Cashflow',
+  value: 5800000.0,
+  currency: 'EUR',
+  fiscal_year: 2024,
+  quarter: 4,
+  comparison_to_previous: 6.8,
+  industry_benchmark: 5.0
+});
+
+CREATE (fm4:FinancialMetric {
+  id: 'fm_004',
+  metric_name: 'R&D Spending',
+  value: 4200000.0,
+  currency: 'EUR',
+  fiscal_year: 2024,
+  quarter: 4,
+  comparison_to_previous: 15.2,
+  industry_benchmark: 8.0
+});
+
+// --- Create Assessments ---
+CREATE (assess1:Assessment {
+  id: 'assess_001',
+  type: 'weakness',
+  category: 'operational',
+  description: 'Production planning process lacks digitalization, leading to inefficiencies and delays',
+  severity: 'high',
+  identified_date: date('2025-01-10'),
+  consultant_notes: 'Manual planning causes 5.8% error rate and 14-day cycle time. Quick win opportunity with MES implementation. Estimated 30% reduction in cycle time possible.'
+});
+
+CREATE (assess2:Assessment {
+  id: 'assess_002',
+  type: 'strength',
+  category: 'strategic',
+  description: 'Strong AI capabilities provide competitive differentiation in the market',
+  impact: 'high',
+  identified_date: date('2025-01-10'),
+  consultant_notes: 'Core competency at maturity level 4. Should be leveraged more aggressively in marketing and product development. Could be basis for premium pricing strategy.'
+});
+
+CREATE (assess3:Assessment {
+  id: 'assess_003',
+  type: 'weakness',
+  category: 'cultural',
+  description: 'Hierarchical decision-making culture slows down innovation and market response',
+  severity: 'medium',
+  identified_date: date('2025-01-10'),
+  consultant_notes: 'Score of 45/100 indicates significant blocker for digital transformation goals. Requires leadership development and empowerment initiatives.'
+});
+
+CREATE (assess4:Assessment {
+  id: 'assess_004',
+  type: 'opportunity',
+  category: 'market',
+  description: 'Growing market with 4.5% annual growth provides expansion opportunities',
+  impact: 'high',
+  identified_date: date('2025-01-10'),
+  consultant_notes: 'Company growing at 8.5% vs market 4.5% - gaining share. Opportunity to accelerate with increased sales investment.'
+});
+
+CREATE (assess5:Assessment {
+  id: 'assess_005',
+  type: 'threat',
+  category: 'strategic',
+  description: 'High customer concentration risk with top 3 customers representing 40.8% of revenue',
+  severity: 'high',
+  identified_date: date('2025-01-10'),
+  consultant_notes: 'Loss of any key account would severely impact financials. Need customer diversification strategy urgently.'
+});
+
+CREATE (assess6:Assessment {
+  id: 'assess_006',
+  type: 'weakness',
+  category: 'hr',
+  description: 'Employee turnover at 8.5% is above target and industry average',
+  severity: 'medium',
+  identified_date: date('2025-01-10'),
+  consultant_notes: 'Exit interviews indicate limited career development opportunities and slow onboarding process. HR processes need improvement.'
+});
+
+// --- Create Action Items ---
+CREATE (act1:ActionItem {
+  id: 'act_001',
+  title: 'Implement MES for Production Planning',
+  description: 'Deploy Manufacturing Execution System to digitalize production planning process',
+  priority: 'quick_win',
+  effort: 'medium',
+  expected_impact: 'high',
+  timeframe: 'short_term',
+  status: 'proposed',
+  estimated_cost: 350000.0,
+  expected_roi: 2.5
+});
+
+CREATE (act2:ActionItem {
+  id: 'act_002',
+  title: 'Launch AI Innovation Marketing Campaign',
+  description: 'Develop marketing campaign highlighting AI capabilities to differentiate from competitors',
+  priority: 'high',
+  effort: 'low',
+  expected_impact: 'medium',
+  timeframe: 'immediate',
+  status: 'proposed',
+  estimated_cost: 120000.0,
+  expected_roi: 3.8
+});
+
+CREATE (act3:ActionItem {
+  id: 'act_003',
+  title: 'Implement Empowerment & Decision Rights Framework',
+  description: 'Define clear decision rights and empower middle management to accelerate decisions',
+  priority: 'high',
+  effort: 'medium',
+  expected_impact: 'high',
+  timeframe: 'mid_term',
+  status: 'proposed',
+  estimated_cost: 180000.0,
+  expected_roi: 4.2
+});
+
+CREATE (act4:ActionItem {
+  id: 'act_004',
+  title: 'Customer Diversification Strategy',
+  description: 'Develop and execute plan to acquire 15-20 new mid-size customers to reduce concentration risk',
+  priority: 'high',
+  effort: 'high',
+  expected_impact: 'high',
+  timeframe: 'mid_term',
+  status: 'proposed',
+  estimated_cost: 500000.0,
+  expected_roi: 3.2
+});
+
+CREATE (act5:ActionItem {
+  id: 'act_005',
+  title: 'Redesign Employee Onboarding Process',
+  description: 'Streamline and digitalize onboarding to reduce time from 45 to 30 days',
+  priority: 'medium',
+  effort: 'low',
+  expected_impact: 'medium',
+  timeframe: 'short_term',
+  status: 'proposed',
+  estimated_cost: 75000.0,
+  expected_roi: 2.8
+});
+
+CREATE (act6:ActionItem {
+  id: 'act_006',
+  title: 'Career Development Program',
+  description: 'Implement structured career development and succession planning program',
+  priority: 'medium',
+  effort: 'medium',
+  expected_impact: 'medium',
+  timeframe: 'mid_term',
+  status: 'proposed',
+  estimated_cost: 200000.0,
+  expected_roi: 2.1
+});
+
+// --- Create Risks ---
+CREATE (risk1:Risk {
+  id: 'risk_001',
+  name: 'Key Customer Dependency',
+  category: 'strategic',
+  description: 'Top 3 customers represent 40.8% of revenue, creating significant concentration risk',
+  probability: 'medium',
+  impact: 'high',
+  mitigation_strategy: 'Diversify customer base through targeted acquisition of mid-size customers',
+  status: 'mitigating'
+});
+
+CREATE (risk2:Risk {
+  id: 'risk_002',
+  name: 'Technology Disruption',
+  category: 'strategic',
+  description: 'Rapid technological change in AI could make current products obsolete',
+  probability: 'medium',
+  impact: 'critical',
+  mitigation_strategy: 'Increase R&D spending to 10% of revenue and establish innovation pipeline',
+  status: 'monitoring'
+});
+
+CREATE (risk3:Risk {
+  id: 'risk_003',
+  name: 'Talent Shortage',
+  category: 'operational',
+  description: 'Difficulty attracting and retaining AI/software talent',
+  probability: 'high',
+  impact: 'medium',
+  mitigation_strategy: 'Improve employer branding, competitive compensation, career development',
+  status: 'mitigating'
+});
+
+// --- Create ValueStream ---
+CREATE (vs1:ValueStream {
+  id: 'vs_001',
+  name: 'Product Development to Market',
+  description: 'End-to-end value stream from R&D to customer delivery',
+  value_added_percentage: 42.0,
+  cycle_time: 120,
+  lead_time: 180
+});
+
+// --- Create DataObjects ---
+CREATE (do1:DataObject {
+  id: 'do_001',
+  name: 'Customer Master Data',
+  type: 'master_data',
+  quality_score: 78.0,
+  availability: 'high',
+  update_frequency: 'daily'
+});
+
+CREATE (do2:DataObject {
+  id: 'do_002',
+  name: 'Product Data',
+  type: 'master_data',
+  quality_score: 85.0,
+  availability: 'high',
+  update_frequency: 'weekly'
+});
+
+CREATE (do3:DataObject {
+  id: 'do_003',
+  name: 'Financial Transactions',
+  type: 'transactional_data',
+  quality_score: 92.0,
+  availability: 'high',
+  update_frequency: 'real_time'
+});
+
+// --- Create Interfaces ---
+CREATE (int1:Interface {
+  id: 'int_001',
+  name: 'SAP-Salesforce Integration',
+  source_system: 'SAP S/4HANA',
+  target_system: 'Salesforce',
+  protocol: 'REST API',
+  data_volume: 50000,
+  latency: 5
+});
+
+CREATE (int2:Interface {
+  id: 'int_002',
+  name: 'SAP-Tableau Integration',
+  source_system: 'SAP S/4HANA',
+  target_system: 'Tableau',
+  protocol: 'ODBC',
+  data_volume: 200000,
+  latency: 15
+});
+
+
+// ============================================
+// 3. CREATE RELATIONSHIPS
+// ============================================
+
+// ======================================
+// COMPANY RELATIONSHIPS
+// ======================================
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (g1:Goal {id: 'goal_001'})
+CREATE (c)-[:HAS_GOAL]->(g1);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (g2:Goal {id: 'goal_002'})
+CREATE (c)-[:HAS_GOAL]->(g2);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (g3:Goal {id: 'goal_003'})
+CREATE (c)-[:HAS_GOAL]->(g3);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (p1:Product {id: 'prod_001'})
+CREATE (c)-[:OFFERS]->(p1);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (p2:Product {id: 'prod_002'})
+CREATE (c)-[:OFFERS]->(p2);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (p3:Product {id: 'prod_003'})
+CREATE (c)-[:OFFERS]->(p3);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (cust1:Customer {id: 'cust_001'})
+CREATE (c)-[:SERVES]->(cust1);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (cust2:Customer {id: 'cust_002'})
+CREATE (c)-[:SERVES]->(cust2);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (cust3:Customer {id: 'cust_003'})
+CREATE (c)-[:SERVES]->(cust3);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (m:Market {id: 'mkt_001'})
+CREATE (c)-[:OPERATES_IN]->(m);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (comp1:Competitor {id: 'comp_001'})
+CREATE (c)-[:COMPETES_WITH]->(comp1);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (comp2:Competitor {id: 'comp_002'})
+CREATE (c)-[:COMPETES_WITH]->(comp2);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (comp3:Competitor {id: 'comp_003'})
+CREATE (c)-[:COMPETES_WITH]->(comp3);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (ou1:OrganizationalUnit {id: 'ou_001'})
+CREATE (c)-[:HAS_UNIT]->(ou1);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (ou2:OrganizationalUnit {id: 'ou_002'})
+CREATE (c)-[:HAS_UNIT]->(ou2);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (ou3:OrganizationalUnit {id: 'ou_003'})
+CREATE (c)-[:HAS_UNIT]->(ou3);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (ou4:OrganizationalUnit {id: 'ou_004'})
+CREATE (c)-[:HAS_UNIT]->(ou4);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (ou5:OrganizationalUnit {id: 'ou_005'})
+CREATE (c)-[:HAS_UNIT]->(ou5);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (sys1:System {id: 'sys_001'})
+CREATE (c)-[:USES_SYSTEM]->(sys1);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (sys2:System {id: 'sys_002'})
+CREATE (c)-[:USES_SYSTEM]->(sys2);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (sys3:System {id: 'sys_003'})
+CREATE (c)-[:USES_SYSTEM]->(sys3);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (sys4:System {id: 'sys_004'})
+CREATE (c)-[:USES_SYSTEM]->(sys4);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (cap1:Capability {id: 'cap_001'})
+CREATE (c)-[:HAS_CAPABILITY]->(cap1);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (cap2:Capability {id: 'cap_002'})
+CREATE (c)-[:HAS_CAPABILITY]->(cap2);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (cap3:Capability {id: 'cap_003'})
+CREATE (c)-[:HAS_CAPABILITY]->(cap3);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (cap4:Capability {id: 'cap_004'})
+CREATE (c)-[:HAS_CAPABILITY]->(cap4);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (cult1:CultureAttribute {id: 'cult_001'})
+CREATE (c)-[:HAS_CULTURE]->(cult1);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (cult2:CultureAttribute {id: 'cult_002'})
+CREATE (c)-[:HAS_CULTURE]->(cult2);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (cult3:CultureAttribute {id: 'cult_003'})
+CREATE (c)-[:HAS_CULTURE]->(cult3);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (cult4:CultureAttribute {id: 'cult_004'})
+CREATE (c)-[:HAS_CULTURE]->(cult4);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (fm1:FinancialMetric {id: 'fm_001'})
+CREATE (c)-[:HAS_FINANCIAL_METRIC]->(fm1);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (fm2:FinancialMetric {id: 'fm_002'})
+CREATE (c)-[:HAS_FINANCIAL_METRIC]->(fm2);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (fm3:FinancialMetric {id: 'fm_003'})
+CREATE (c)-[:HAS_FINANCIAL_METRIC]->(fm3);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (fm4:FinancialMetric {id: 'fm_004'})
+CREATE (c)-[:HAS_FINANCIAL_METRIC]->(fm4);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (a1:Assessment {id: 'assess_001'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a1);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (a2:Assessment {id: 'assess_002'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a2);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (a3:Assessment {id: 'assess_003'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a3);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (a4:Assessment {id: 'assess_004'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a4);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (a5:Assessment {id: 'assess_005'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a5);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (a6:Assessment {id: 'assess_006'})
+CREATE (c)-[:HAS_ASSESSMENT]->(a6);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (r1:Risk {id: 'risk_001'})
+CREATE (c)-[:FACES_RISK]->(r1);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (r2:Risk {id: 'risk_002'})
+CREATE (c)-[:FACES_RISK]->(r2);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (r3:Risk {id: 'risk_003'})
+CREATE (c)-[:FACES_RISK]->(r3);
+
+MATCH (c:Company {id: 'comp_001'})
+MATCH (vs1:ValueStream {id: 'vs_001'})
+CREATE (c)-[:HAS_VALUESTREAM]->(vs1);
+
+// ======================================
+// PRODUCT RELATIONSHIPS
+// ======================================
+
+MATCH (p:Product {id: 'prod_001'})
+MATCH (cust1:Customer {id: 'cust_001'})
+CREATE (p)-[:CONSUMED_BY]->(cust1);
+
+MATCH (p:Product {id: 'prod_001'})
+MATCH (cust2:Customer {id: 'cust_002'})
+CREATE (p)-[:CONSUMED_BY]->(cust2);
+
+MATCH (p:Product {id: 'prod_002'})
+MATCH (cust1:Customer {id: 'cust_001'})
+CREATE (p)-[:CONSUMED_BY]->(cust1);
+
+MATCH (p:Product {id: 'prod_003'})
+MATCH (cust3:Customer {id: 'cust_003'})
+CREATE (p)-[:CONSUMED_BY]->(cust3);
+
+MATCH (p:Product {id: 'prod_001'})
+MATCH (proc:Process {id: 'proc_001'})
+CREATE (p)-[:DELIVERED_BY]->(proc);
+
+MATCH (p:Product {id: 'prod_002'})
+MATCH (proc:Process {id: 'proc_001'})
+CREATE (p)-[:DELIVERED_BY]->(proc);
+
+MATCH (p:Product {id: 'prod_001'})
+MATCH (kpi:KPI {id: 'kpi_002'})
+CREATE (p)-[:MEASURED_BY]->(kpi);
+
+MATCH (p:Product {id: 'prod_001'})
+MATCH (vs:ValueStream {id: 'vs_001'})
+CREATE (p)-[:PART_OF_VALUESTREAM]->(vs);
+
+// ======================================
+// CUSTOMER RELATIONSHIPS
+// ======================================
+
+MATCH (cust1:Customer {id: 'cust_001'})
+MATCH (m:Market {id: 'mkt_001'})
+CREATE (cust1)-[:LOCATED_IN]->(m);
+
+MATCH (cust2:Customer {id: 'cust_002'})
+MATCH (m:Market {id: 'mkt_001'})
+CREATE (cust2)-[:LOCATED_IN]->(m);
+
+MATCH (cust3:Customer {id: 'cust_003'})
+MATCH (m:Market {id: 'mkt_001'})
+CREATE (cust3)-[:LOCATED_IN]->(m);
+
+MATCH (cust1:Customer {id: 'cust_001'})
+MATCH (kpi:KPI {id: 'kpi_004'})
+CREATE (cust1)-[:GENERATES_KPI]->(kpi);
+
+// ======================================
+// PROCESS RELATIONSHIPS
+// ======================================
+
+MATCH (proc1:Process {id: 'proc_001'})
+MATCH (ou:OrganizationalUnit {id: 'ou_002'})
+CREATE (proc1)-[:EXECUTED_BY]->(ou);
+
+MATCH (proc2:Process {id: 'proc_002'})
+MATCH (ou:OrganizationalUnit {id: 'ou_002'})
+CREATE (proc2)-[:EXECUTED_BY]->(ou);
+
+MATCH (proc3:Process {id: 'proc_003'})
+MATCH (ou:OrganizationalUnit {id: 'ou_002'})
+CREATE (proc3)-[:EXECUTED_BY]->(ou);
+
+MATCH (proc4:Process {id: 'proc_004'})
+MATCH (ou:OrganizationalUnit {id: 'ou_004'})
+CREATE (proc4)-[:EXECUTED_BY]->(ou);
+
+MATCH (proc1:Process {id: 'proc_001'})
+MATCH (sys:System {id: 'sys_001'})
+CREATE (proc1)-[:USES]->(sys);
+
+MATCH (proc1:Process {id: 'proc_001'})
+MATCH (sys:System {id: 'sys_002'})
+CREATE (proc1)-[:USES]->(sys);
+
+MATCH (proc2:Process {id: 'proc_002'})
+MATCH (sys:System {id: 'sys_001'})
+CREATE (proc2)-[:USES]->(sys);
+
+MATCH (proc3:Process {id: 'proc_003'})
+MATCH (sys:System {id: 'sys_001'})
+CREATE (proc3)-[:USES]->(sys);
+
+MATCH (proc4:Process {id: 'proc_004'})
+MATCH (sys:System {id: 'sys_003'})
+CREATE (proc4)-[:USES]->(sys);
+
+MATCH (proc1:Process {id: 'proc_001'})
+MATCH (kpi:KPI {id: 'kpi_002'})
+CREATE (proc1)-[:MEASURED_BY]->(kpi);
+
+MATCH (proc2:Process {id: 'proc_002'})
+MATCH (kpi:KPI {id: 'kpi_005'})
+CREATE (proc2)-[:MEASURED_BY]->(kpi);
+
+MATCH (proc4:Process {id: 'proc_004'})
+MATCH (kpi:KPI {id: 'kpi_003'})
+CREATE (proc4)-[:MEASURED_BY]->(kpi);
+
+MATCH (proc1:Process {id: 'proc_001'})
+MATCH (cap:Capability {id: 'cap_004'})
+CREATE (proc1)-[:REQUIRES_CAPABILITY]->(cap);
+
+MATCH (proc2:Process {id: 'proc_002'})
+MATCH (cap:Capability {id: 'cap_003'})
+CREATE (proc2)-[:REQUIRES_CAPABILITY]->(cap);
+
+MATCH (proc1:Process {id: 'proc_001'})
+MATCH (role:Role {id: 'role_001'})
+CREATE (proc1)-[:SUPPORTED_BY]->(role);
+
+MATCH (proc1:Process {id: 'proc_001'})
+MATCH (role:Role {id: 'role_002'})
+CREATE (proc1)-[:SUPPORTED_BY]->(role);
+
+MATCH (proc1:Process {id: 'proc_001'})
+MATCH (vs:ValueStream {id: 'vs_001'})
+CREATE (proc1)-[:PART_OF_VALUESTREAM]->(vs);
+
+MATCH (proc2:Process {id: 'proc_002'})
+MATCH (vs:ValueStream {id: 'vs_001'})
+CREATE (proc2)-[:PART_OF_VALUESTREAM]->(vs);
+
+// Process dependencies (PRECEDES)
+MATCH (proc2:Process {id: 'proc_002'})
+MATCH (proc1:Process {id: 'proc_001'})
+CREATE (proc2)-[:PRECEDES]->(proc1);
+
+// ======================================
+// KPI RELATIONSHIPS
+// ======================================
+
+MATCH (kpi1:KPI {id: 'kpi_001'})
+MATCH (g:Goal {id: 'goal_001'})
+CREATE (kpi1)-[:MEASURES]->(g);
+
+MATCH (kpi2:KPI {id: 'kpi_002'})
+MATCH (g:Goal {id: 'goal_002'})
+CREATE (kpi2)-[:MEASURES]->(g);
+
+MATCH (kpi3:KPI {id: 'kpi_003'})
+MATCH (g:Goal {id: 'goal_003'})
+CREATE (kpi3)-[:MEASURES]->(g);
+
+MATCH (kpi4:KPI {id: 'kpi_004'})
+MATCH (g:Goal {id: 'goal_001'})
+CREATE (kpi4)-[:MEASURES]->(g);
+
+MATCH (kpi2:KPI {id: 'kpi_002'})
+MATCH (proc:Process {id: 'proc_001'})
+CREATE (kpi2)-[:TRACKS]->(proc);
+
+MATCH (kpi5:KPI {id: 'kpi_005'})
+MATCH (proc:Process {id: 'proc_002'})
+CREATE (kpi5)-[:TRACKS]->(proc);
+
+MATCH (kpi1:KPI {id: 'kpi_001'})
+MATCH (ou:OrganizationalUnit {id: 'ou_002'})
+CREATE (kpi1)-[:TRACKS]->(ou);
+
+MATCH (kpi3:KPI {id: 'kpi_003'})
+MATCH (ou:OrganizationalUnit {id: 'ou_004'})
+CREATE (kpi3)-[:TRACKS]->(ou);
+
+MATCH (kpi5:KPI {id: 'kpi_005'})
+MATCH (a:Assessment {id: 'assess_001'})
+CREATE (kpi5)-[:INDICATES]->(a);
+
+MATCH (kpi3:KPI {id: 'kpi_003'})
+MATCH (a:Assessment {id: 'assess_006'})
+CREATE (kpi3)-[:INDICATES]->(a);
+
+// ======================================
+// ORGANIZATIONAL STRUCTURE
+// ======================================
+
+// Organizational hierarchy (REPORTS_TO)
+MATCH (ou6:OrganizationalUnit {id: 'ou_006'})
+MATCH (ou2:OrganizationalUnit {id: 'ou_002'})
+CREATE (ou6)-[:REPORTS_TO]->(ou2);
+
+MATCH (ou1:OrganizationalUnit {id: 'ou_001'})
+MATCH (pers:Person {id: 'pers_001'})
+CREATE (ou1)-[:LED_BY]->(pers);
+
+MATCH (ou2:OrganizationalUnit {id: 'ou_002'})
+MATCH (pers:Person {id: 'pers_001'})
+CREATE (ou2)-[:LED_BY]->(pers);
+
+MATCH (ou3:OrganizationalUnit {id: 'ou_003'})
+MATCH (pers:Person {id: 'pers_003'})
+CREATE (ou3)-[:LED_BY]->(pers);
+
+MATCH (ou5:OrganizationalUnit {id: 'ou_005'})
+MATCH (pers:Person {id: 'pers_003'})
+CREATE (ou5)-[:LED_BY]->(pers);
+
+MATCH (ou6:OrganizationalUnit {id: 'ou_006'})
+MATCH (pers:Person {id: 'pers_004'})
+CREATE (ou6)-[:LED_BY]->(pers);
+
+MATCH (ou1:OrganizationalUnit {id: 'ou_001'})
+MATCH (role:Role {id: 'role_002'})
+CREATE (ou1)-[:HAS_ROLE]->(role);
+
+MATCH (ou2:OrganizationalUnit {id: 'ou_002'})
+MATCH (role:Role {id: 'role_001'})
+CREATE (ou2)-[:HAS_ROLE]->(role);
+
+MATCH (ou3:OrganizationalUnit {id: 'ou_003'})
+MATCH (role:Role {id: 'role_003'})
+CREATE (ou3)-[:HAS_ROLE]->(role);
+
+MATCH (ou2:OrganizationalUnit {id: 'ou_002'})
+MATCH (cap:Capability {id: 'cap_003'})
+CREATE (ou2)-[:OWNS_CAPABILITY]->(cap);
+
+MATCH (ou3:OrganizationalUnit {id: 'ou_003'})
+MATCH (cap:Capability {id: 'cap_001'})
+CREATE (ou3)-[:OWNS_CAPABILITY]->(cap);
+
+MATCH (ou4:OrganizationalUnit {id: 'ou_004'})
+MATCH (cap:Capability {id: 'cap_002'})
+CREATE (ou4)-[:OWNS_CAPABILITY]->(cap);
+
+// ======================================
+// PERSON & ROLE
+// ======================================
+
+MATCH (pers1:Person {id: 'pers_001'})
+MATCH (role:Role {id: 'role_001'})
+CREATE (pers1)-[:HOLDS_ROLE]->(role);
+
+MATCH (pers4:Person {id: 'pers_004'})
+MATCH (role:Role {id: 'role_001'})
+CREATE (pers4)-[:HOLDS_ROLE]->(role);
+
+MATCH (pers1:Person {id: 'pers_001'})
+MATCH (proc:Process {id: 'proc_002'})
+CREATE (pers1)-[:RESPONSIBLE_FOR]->(proc);
+
+MATCH (pers4:Person {id: 'pers_004'})
+MATCH (proc:Process {id: 'proc_002'})
+CREATE (pers4)-[:RESPONSIBLE_FOR]->(proc);
+
+MATCH (pers1:Person {id: 'pers_001'})
+MATCH (ou:OrganizationalUnit {id: 'ou_002'})
+CREATE (pers1)-[:MANAGES]->(ou);
+
+// ======================================
+// SYSTEM INTEGRATION
+// ======================================
+
+MATCH (sys1:System {id: 'sys_001'})
+MATCH (sys2:System {id: 'sys_002'})
+CREATE (sys1)-[:INTEGRATES_WITH]->(sys2);
+
+MATCH (sys1:System {id: 'sys_001'})
+MATCH (sys4:System {id: 'sys_004'})
+CREATE (sys1)-[:INTEGRATES_WITH]->(sys4);
+
+MATCH (sys1:System {id: 'sys_001'})
+MATCH (sys3:System {id: 'sys_003'})
+CREATE (sys1)-[:INTEGRATES_WITH]->(sys3);
+
+MATCH (sys1:System {id: 'sys_001'})
+MATCH (sys2:System {id: 'sys_002'})
+CREATE (sys1)-[:PROVIDES_DATA_TO]->(sys2);
+
+MATCH (sys1:System {id: 'sys_001'})
+MATCH (sys4:System {id: 'sys_004'})
+CREATE (sys1)-[:PROVIDES_DATA_TO]->(sys4);
+
+MATCH (sys1:System {id: 'sys_001'})
+MATCH (proc1:Process {id: 'proc_001'})
+CREATE (sys1)-[:SUPPORTS]->(proc1);
+
+MATCH (sys1:System {id: 'sys_001'})
+MATCH (proc2:Process {id: 'proc_002'})
+CREATE (sys1)-[:SUPPORTS]->(proc2);
+
+MATCH (sys2:System {id: 'sys_002'})
+MATCH (proc1:Process {id: 'proc_001'})
+CREATE (sys2)-[:SUPPORTS]->(proc1);
+
+MATCH (sys3:System {id: 'sys_003'})
+MATCH (proc4:Process {id: 'proc_004'})
+CREATE (sys3)-[:SUPPORTS]->(proc4);
+
+MATCH (sys1:System {id: 'sys_001'})
+MATCH (do1:DataObject {id: 'do_001'})
+CREATE (sys1)-[:MANAGES]->(do1);
+
+MATCH (sys1:System {id: 'sys_001'})
+MATCH (do2:DataObject {id: 'do_002'})
+CREATE (sys1)-[:MANAGES]->(do2);
+
+MATCH (sys1:System {id: 'sys_001'})
+MATCH (do3:DataObject {id: 'do_003'})
+CREATE (sys1)-[:MANAGES]->(do3);
+
+// ======================================
+// INTERFACE RELATIONSHIPS
+// ======================================
+
+MATCH (int1:Interface {id: 'int_001'})
+MATCH (sys1:System {id: 'sys_001'})
+CREATE (sys1)-[:HAS_INTERFACE]->(int1);
+
+MATCH (int1:Interface {id: 'int_001'})
+MATCH (sys2:System {id: 'sys_002'})
+CREATE (int1)-[:CONNECTS_TO]->(sys2);
+
+MATCH (int2:Interface {id: 'int_002'})
+MATCH (sys1:System {id: 'sys_001'})
+CREATE (sys1)-[:HAS_INTERFACE]->(int2);
+
+MATCH (int2:Interface {id: 'int_002'})
+MATCH (sys4:System {id: 'sys_004'})
+CREATE (int2)-[:CONNECTS_TO]->(sys4);
+
+MATCH (int1:Interface {id: 'int_001'})
+MATCH (do1:DataObject {id: 'do_001'})
+CREATE (int1)-[:EXCHANGES]->(do1);
+
+// ======================================
+// ASSESSMENT RELATIONSHIPS
+// ======================================
+
+MATCH (a1:Assessment {id: 'assess_001'})
+MATCH (proc:Process {id: 'proc_002'})
+CREATE (a1)-[:RELATES_TO]->(proc);
+
+MATCH (a2:Assessment {id: 'assess_002'})
+MATCH (cap:Capability {id: 'cap_001'})
+CREATE (a2)-[:RELATES_TO]->(cap);
+
+MATCH (a3:Assessment {id: 'assess_003'})
+MATCH (cult:CultureAttribute {id: 'cult_002'})
+CREATE (a3)-[:RELATES_TO]->(cult);
+
+MATCH (a4:Assessment {id: 'assess_004'})
+MATCH (m:Market {id: 'mkt_001'})
+CREATE (a4)-[:RELATES_TO]->(m);
+
+MATCH (a5:Assessment {id: 'assess_005'})
+MATCH (r:Risk {id: 'risk_001'})
+CREATE (a5)-[:RELATES_TO]->(r);
+
+MATCH (a6:Assessment {id: 'assess_006'})
+MATCH (proc:Process {id: 'proc_004'})
+CREATE (a6)-[:RELATES_TO]->(proc);
+
+MATCH (a1:Assessment {id: 'assess_001'})
+MATCH (act:ActionItem {id: 'act_001'})
+CREATE (a1)-[:LEADS_TO]->(act);
+
+MATCH (a2:Assessment {id: 'assess_002'})
+MATCH (act:ActionItem {id: 'act_002'})
+CREATE (a2)-[:LEADS_TO]->(act);
+
+MATCH (a3:Assessment {id: 'assess_003'})
+MATCH (act:ActionItem {id: 'act_003'})
+CREATE (a3)-[:LEADS_TO]->(act);
+
+MATCH (a5:Assessment {id: 'assess_005'})
+MATCH (act:ActionItem {id: 'act_004'})
+CREATE (a5)-[:LEADS_TO]->(act);
+
+MATCH (a6:Assessment {id: 'assess_006'})
+MATCH (act:ActionItem {id: 'act_005'})
+CREATE (a6)-[:LEADS_TO]->(act);
+
+MATCH (a6:Assessment {id: 'assess_006'})
+MATCH (act:ActionItem {id: 'act_006'})
+CREATE (a6)-[:LEADS_TO]->(act);
+
+// ======================================
+// ACTION ITEM RELATIONSHIPS
+// ======================================
+
+MATCH (act1:ActionItem {id: 'act_001'})
+MATCH (a:Assessment {id: 'assess_001'})
+CREATE (act1)-[:ADDRESSES]->(a);
+
+MATCH (act2:ActionItem {id: 'act_002'})
+MATCH (a:Assessment {id: 'assess_002'})
+CREATE (act2)-[:ADDRESSES]->(a);
