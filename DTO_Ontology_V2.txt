@@ -1,0 +1,160 @@
+// ============================================
+// NEO4J COMPANY PROFILE SCHEMA
+// Digital Twin of Organizations (DTO)
+// GraphRAG für Unternehmensprofile
+// ============================================
+
+// ============================================
+// 1. CONSTRAINTS & INDEXES
+// ============================================
+
+// Company (Organization)
+CREATE CONSTRAINT company_id IF NOT EXISTS 
+FOR (c:Company) REQUIRE c.id IS UNIQUE;
+
+CREATE INDEX company_name IF NOT EXISTS 
+FOR (c:Company) ON (c.name);
+
+CREATE INDEX company_industry IF NOT EXISTS 
+FOR (c:Company) ON (c.industry);
+
+// Goal
+CREATE CONSTRAINT goal_id IF NOT EXISTS 
+FOR (g:Goal) REQUIRE g.id IS UNIQUE;
+
+CREATE INDEX goal_priority IF NOT EXISTS 
+FOR (g:Goal) ON (g.priority);
+
+CREATE INDEX goal_status IF NOT EXISTS 
+FOR (g:Goal) ON (g.status);
+
+// Product/Service
+CREATE CONSTRAINT product_id IF NOT EXISTS 
+FOR (p:Product) REQUIRE p.id IS UNIQUE;
+
+CREATE INDEX product_lifecycle IF NOT EXISTS 
+FOR (p:Product) ON (p.lifecycle_stage);
+
+// Customer
+CREATE CONSTRAINT customer_id IF NOT EXISTS 
+FOR (c:Customer) REQUIRE c.id IS UNIQUE;
+
+CREATE INDEX customer_segment IF NOT EXISTS 
+FOR (c:Customer) ON (c.segment);
+
+// Process
+CREATE CONSTRAINT process_id IF NOT EXISTS 
+FOR (p:Process) REQUIRE p.id IS UNIQUE;
+
+CREATE INDEX process_category IF NOT EXISTS 
+FOR (p:Process) ON (p.category);
+
+CREATE INDEX process_type IF NOT EXISTS 
+FOR (p:Process) ON (p.process_type);
+
+// KPI
+CREATE CONSTRAINT kpi_id IF NOT EXISTS 
+FOR (k:KPI) REQUIRE k.id IS UNIQUE;
+
+CREATE INDEX kpi_category IF NOT EXISTS 
+FOR (k:KPI) ON (k.category);
+
+CREATE INDEX kpi_trend IF NOT EXISTS 
+FOR (k:KPI) ON (k.trend);
+
+// OrganizationalUnit
+CREATE CONSTRAINT unit_id IF NOT EXISTS 
+FOR (ou:OrganizationalUnit) REQUIRE ou.id IS UNIQUE;
+
+CREATE INDEX unit_type IF NOT EXISTS 
+FOR (ou:OrganizationalUnit) ON (ou.type);
+
+// Role
+CREATE CONSTRAINT role_id IF NOT EXISTS 
+FOR (r:Role) REQUIRE r.id IS UNIQUE;
+
+CREATE INDEX role_level IF NOT EXISTS 
+FOR (r:Role) ON (r.level);
+
+// Person
+CREATE CONSTRAINT person_id IF NOT EXISTS 
+FOR (p:Person) REQUIRE p.id IS UNIQUE;
+
+// Capability
+CREATE CONSTRAINT capability_id IF NOT EXISTS 
+FOR (c:Capability) REQUIRE c.id IS UNIQUE;
+
+CREATE INDEX capability_maturity IF NOT EXISTS 
+FOR (c:Capability) ON (c.maturity_level);
+
+// System
+CREATE CONSTRAINT system_id IF NOT EXISTS 
+FOR (s:System) REQUIRE s.id IS UNIQUE;
+
+CREATE INDEX system_type IF NOT EXISTS 
+FOR (s:System) ON (s.type);
+
+// CultureAttribute
+CREATE CONSTRAINT culture_id IF NOT EXISTS 
+FOR (c:CultureAttribute) REQUIRE c.id IS UNIQUE;
+
+CREATE INDEX culture_dimension IF NOT EXISTS 
+FOR (c:CultureAttribute) ON (c.dimension);
+
+// Market
+CREATE CONSTRAINT market_id IF NOT EXISTS 
+FOR (m:Market) REQUIRE m.id IS UNIQUE;
+
+// Competitor
+CREATE CONSTRAINT competitor_id IF NOT EXISTS 
+FOR (c:Competitor) REQUIRE c.id IS UNIQUE;
+
+// FinancialMetric
+CREATE CONSTRAINT financial_metric_id IF NOT EXISTS 
+FOR (fm:FinancialMetric) REQUIRE fm.id IS UNIQUE;
+
+CREATE INDEX financial_metric_year IF NOT EXISTS 
+FOR (fm:FinancialMetric) ON (fm.fiscal_year);
+
+// Risk
+CREATE CONSTRAINT risk_id IF NOT EXISTS 
+FOR (r:Risk) REQUIRE r.id IS UNIQUE;
+
+CREATE INDEX risk_category IF NOT EXISTS 
+FOR (r:Risk) ON (r.category);
+
+CREATE INDEX risk_impact IF NOT EXISTS 
+FOR (r:Risk) ON (r.impact);
+
+// Assessment
+CREATE CONSTRAINT assessment_id IF NOT EXISTS 
+FOR (a:Assessment) REQUIRE a.id IS UNIQUE;
+
+CREATE INDEX assessment_type IF NOT EXISTS 
+FOR (a:Assessment) ON (a.type);
+
+CREATE INDEX assessment_severity IF NOT EXISTS 
+FOR (a:Assessment) ON (a.severity);
+
+// ActionItem
+CREATE CONSTRAINT action_id IF NOT EXISTS 
+FOR (a:ActionItem) REQUIRE a.id IS UNIQUE;
+
+CREATE INDEX action_priority IF NOT EXISTS 
+FOR (a:ActionItem) ON (a.priority);
+
+CREATE INDEX action_status IF NOT EXISTS 
+FOR (a:ActionItem) ON (a.status);
+
+// ValueStream
+CREATE CONSTRAINT valuestream_id IF NOT EXISTS 
+FOR (vs:ValueStream) REQUIRE vs.id IS UNIQUE;
+
+// DataObjects
+CREATE CONSTRAINT dataobject_id IF NOT EXISTS 
+FOR (d:DataObject) REQUIRE d.id IS UNIQUE;
+
+// Interface
+CREATE CONSTRAINT interface_id IF NOT EXISTS 
+FOR (i:Interface) REQUIRE i.id IS UNIQUE;
+
